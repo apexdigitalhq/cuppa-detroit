@@ -85,14 +85,26 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(92,64,51,0.08); }
   justify-content: space-between;
 }
 .nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+.nav-logo-img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: 65% center;
+}
+.nav-logo-text {
   font-family: 'Playfair Display', serif;
   font-weight: 700;
   font-size: 1.1rem;
   color: var(--brown);
-  text-decoration: none;
   letter-spacing: 0.5px;
 }
-.nav-logo span { color: var(--rose); }
+.nav-logo-text span { color: var(--rose); }
 .nav-links {
   display: flex;
   gap: 28px;
@@ -172,30 +184,25 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(92,64,51,0.08); }
   text-align: center;
   padding: 120px 20px 80px;
   position: relative;
-  background: var(--cream);
   overflow: hidden;
+  background: #1a1210;
 }
-.hero::before {
-  content: '';
+.hero-bg {
   position: absolute;
-  width: 500px; height: 500px;
-  background: radial-gradient(circle, rgba(212,132,140,0.15), transparent 70%);
-  top: -100px; right: -100px;
-  border-radius: 50%;
+  inset: 0;
+  z-index: 0;
 }
-.hero::after {
-  content: '';
-  position: absolute;
-  width: 400px; height: 400px;
-  background: radial-gradient(circle, rgba(201,169,110,0.12), transparent 70%);
-  bottom: -50px; left: -80px;
-  border-radius: 50%;
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.45;
 }
 .hero-content { position: relative; z-index: 1; max-width: 640px; }
 .hero-badge {
   display: inline-block;
-  background: rgba(212,132,140,0.12);
-  color: var(--rose);
+  background: rgba(212,132,140,0.2);
+  color: var(--rose-light);
   padding: 8px 20px;
   border-radius: 50px;
   font-size: 0.8rem;
@@ -210,15 +217,15 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(92,64,51,0.08); }
   font-weight: 700;
   line-height: 1.1;
   margin-bottom: 20px;
-  color: var(--brown);
+  color: var(--cream);
 }
 .hero h1 em {
   font-style: italic;
-  color: var(--rose);
+  color: var(--rose-light);
 }
 .hero p {
   font-size: 1.1rem;
-  color: var(--text-light);
+  color: rgba(245,237,227,0.8);
   margin-bottom: 32px;
   max-width: 440px;
   margin-left: auto;
@@ -248,44 +255,31 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(92,64,51,0.08); }
 .btn-primary:hover { box-shadow: 0 8px 28px rgba(212,132,140,0.4); }
 .btn-secondary {
   background: transparent;
+  color: var(--cream);
+  border: 2px solid rgba(245,237,227,0.3);
+}
+.btn-secondary:hover { border-color: var(--rose-light); color: var(--rose-light); }
+.btn-secondary-dark {
+  background: transparent;
   color: var(--brown);
   border: 2px solid rgba(92,64,51,0.15);
 }
-.btn-secondary:hover { border-color: var(--rose); color: var(--rose); }
+.btn-secondary-dark:hover { border-color: var(--rose); color: var(--rose); }
 
 /* Logo badge in hero */
 .hero-logo {
   width: 120px; height: 120px;
   margin: 0 auto 28px;
   border-radius: 50%;
-  background: var(--brown);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  color: var(--cream);
-  position: relative;
-  box-shadow: 0 8px 32px rgba(92,64,51,0.2);
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
 }
-.hero-logo::before {
-  content: 'BREWED IN DETROIT · EST 2024';
-  position: absolute;
-  font-size: 0.5rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  bottom: 14px;
-  color: var(--gold);
-  font-weight: 500;
+.hero-logo img {
+  width: 250%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 62% center;
 }
-.logo-icon { font-size: 1.6rem; margin-bottom: 2px; }
-.logo-name {
-  font-family: 'Playfair Display', serif;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-.logo-sub { font-size: 0.45rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); }
 
 /* SECTIONS */
 section { padding: 80px 0; }
@@ -327,13 +321,14 @@ section { padding: 80px 0; }
 .story-image {
   aspect-ratio: 4/5;
   border-radius: var(--radius);
-  background: linear-gradient(135deg, var(--cream), var(--rose-light));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 4rem;
-  position: relative;
   overflow: hidden;
+  position: relative;
+}
+.story-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 .story-image::after {
   content: '';
@@ -370,6 +365,14 @@ section { padding: 80px 0; }
 
 /* MENU */
 .menu { background: var(--cream); }
+.menu-hero-img {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto 32px;
+  display: block;
+  border-radius: var(--radius);
+  object-fit: cover;
+}
 .menu-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
@@ -483,8 +486,18 @@ section { padding: 80px 0; }
   background: linear-gradient(135deg, rgba(212,132,140,0.08), rgba(201,169,110,0.08));
   border-radius: var(--radius);
   padding: 28px;
-  text-align: center;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 28px;
+  align-items: center;
 }
+.sampler-box-img {
+  width: 100%;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+  aspect-ratio: 1;
+}
+.sampler-box-content { text-align: center; }
 .sampler-box h3 {
   font-family: 'Playfair Display', serif;
   font-size: 1.3rem;
@@ -607,21 +620,34 @@ section { padding: 80px 0; }
   overflow: hidden;
 }
 .gallery-item:hover { transform: scale(1.03); }
-.gallery-item::after {
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.gallery-item.gallery-gradient {
+  text-decoration: none;
+  color: white;
+  font-size: 1.6rem;
+  font-weight: 600;
+  font-family: 'Playfair Display', serif;
+}
+.gallery-item.gallery-gradient::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(92,64,51,0);
-  transition: background 0.3s;
-  border-radius: var(--radius-sm);
+  background: inherit;
+  z-index: 0;
 }
-.gallery-item:hover::after { background: rgba(92,64,51,0.05); }
-.g1 { background: linear-gradient(135deg, #E8D5C4, #D4848C40); }
-.g2 { background: linear-gradient(135deg, #D4BE8E40, #F5EDE3); }
-.g3 { background: linear-gradient(135deg, #C9A96E30, #E8B4B8); }
-.g4 { background: linear-gradient(135deg, #F5EDE3, #D4848C30); }
-.g5 { background: linear-gradient(135deg, #E8B4B8, #C9A96E30); }
-.g6 { background: linear-gradient(135deg, #D4848C20, #E8D5C4); }
+.gallery-item.gallery-gradient span {
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.g1 { background: linear-gradient(135deg, var(--rose), var(--gold)); }
+.g2 { background: linear-gradient(135deg, var(--brown), var(--rose)); }
+.g3 { background: linear-gradient(135deg, var(--gold), var(--rose-light)); }
 .gallery-cta {
   text-align: center;
   margin-top: 24px;
@@ -665,12 +691,24 @@ footer {
   text-align: center;
 }
 .footer-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.footer-logo-img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: 62% center;
+}
+.footer-logo-text {
   font-family: 'Playfair Display', serif;
   font-size: 1.2rem;
   font-weight: 700;
-  margin-bottom: 8px;
 }
-.footer-logo span { color: var(--rose-light); }
+.footer-logo-text span { color: var(--rose-light); }
 .footer-tagline {
   font-size: 0.75rem;
   letter-spacing: 2px;
@@ -678,6 +716,17 @@ footer {
   color: var(--gold);
   margin-bottom: 24px;
 }
+.footer-contact {
+  margin-bottom: 16px;
+  font-size: 0.9rem;
+  color: rgba(245,237,227,0.8);
+}
+.footer-contact a {
+  color: rgba(245,237,227,0.8);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-contact a:hover { color: var(--rose-light); }
 .footer-links {
   display: flex;
   gap: 24px;
@@ -709,6 +758,8 @@ footer {
   section { padding: 60px 0; }
   .book-card { padding: 40px 24px; }
   .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  .sampler-box { grid-template-columns: 1fr; text-align: center; }
+  .sampler-box-img { max-width: 200px; margin: 0 auto; }
 }
 
 @media (max-width: 480px) {
@@ -725,7 +776,10 @@ footer {
 <!-- NAV -->
 <nav id="nav">
   <div class="nav-inner">
-    <a href="#" class="nav-logo">cuppa <span>detroit</span></a>
+    <a href="#" class="nav-logo">
+      <img src="logo.jpg" alt="Cuppa Detroit" class="nav-logo-img">
+      <div class="nav-logo-text">cuppa <span>detroit</span></div>
+    </a>
     <ul class="nav-links">
       <li><a href="#story">Our Story</a></li>
       <li><a href="#menu">Menu</a></li>
@@ -753,11 +807,12 @@ footer {
 
 <!-- HERO -->
 <section class="hero">
+  <div class="hero-bg">
+    <img src="hero-cup.jpg" alt="Cuppa Detroit branded cup">
+  </div>
   <div class="hero-content">
     <div class="hero-logo">
-      <span class="logo-icon">☕</span>
-      <span class="logo-name">Cuppa Detroit</span>
-      <span class="logo-sub">Coffee</span>
+      <img src="logo.jpg" alt="Cuppa Detroit Logo">
     </div>
     <div class="hero-badge">Detroit's Cutest Coffee Cart</div>
     <h1>Coffee First.<br><em>Everything Else</em> Later.</h1>
@@ -773,7 +828,9 @@ footer {
 <section class="story" id="story">
   <div class="container">
     <div class="story-grid">
-      <div class="story-image reveal">☕</div>
+      <div class="story-image reveal">
+        <img src="fresh-menu.jpg" alt="Fresh on the Menu — Cuppa Detroit iced drink" loading="lazy">
+      </div>
       <div class="story-text reveal">
         <span class="section-label">Our Story</span>
         <h2 class="section-title">From Our Kitchen<br>to Your City 💛</h2>
@@ -806,6 +863,7 @@ footer {
       <span class="section-label">The Menu</span>
       <h2 class="section-title">What's Brewing ☕</h2>
       <p class="section-subtitle" style="margin:0 auto 8px">Handcrafted drinks made with love (and really good espresso)</p>
+      <img src="fresh-menu.jpg" alt="Fresh on the Menu" class="menu-hero-img" loading="lazy">
     </div>
     <div class="menu-grid">
       <div class="menu-card reveal">
@@ -862,7 +920,7 @@ footer {
           <li>2 hours of service</li>
           <li>Full setup & cleanup</li>
         </ul>
-        <a href="https://forms.gle/nHkHVDi85KwurqEaA" target="_blank" class="btn btn-secondary" style="width:100%;justify-content:center">Get Quote</a>
+        <a href="https://forms.gle/nHkHVDi85KwurqEaA" target="_blank" class="btn btn-secondary-dark" style="width:100%;justify-content:center">Get Quote</a>
       </div>
       <div class="package-card featured reveal">
         <div class="package-badge">Most Popular</div>
@@ -889,14 +947,17 @@ footer {
           <li>Full setup & cleanup</li>
           <li>Premium customization</li>
         </ul>
-        <a href="https://forms.gle/nHkHVDi85KwurqEaA" target="_blank" class="btn btn-secondary" style="width:100%;justify-content:center">Get Quote</a>
+        <a href="https://forms.gle/nHkHVDi85KwurqEaA" target="_blank" class="btn btn-secondary-dark" style="width:100%;justify-content:center">Get Quote</a>
       </div>
     </div>
     <div class="sampler-box reveal">
-      <h3>🎁 Event Sampler Box</h3>
-      <div class="sampler-price">$22</div>
-      <p>Try 4 of our signature drinks before you book! Available by inquiry.<br>Fee is credited toward your event booking ✨</p>
-      <a href="https://forms.gle/nHkHVDi85KwurqEaA" target="_blank" class="btn btn-primary" style="margin-top:16px">Inquire Now</a>
+      <img src="sampler-box.jpg" alt="Cuppa Detroit Event Sampler Box" class="sampler-box-img" loading="lazy">
+      <div class="sampler-box-content">
+        <h3>🎁 Event Sampler Box</h3>
+        <div class="sampler-price">$22</div>
+        <p>Try 4 of our signature drinks before you book! Available by inquiry.<br>Fee is credited toward your event booking ✨</p>
+        <a href="https://forms.gle/nHkHVDi85KwurqEaA" target="_blank" class="btn btn-primary" style="margin-top:16px">Inquire Now</a>
+      </div>
     </div>
   </div>
 </section>
@@ -962,12 +1023,18 @@ footer {
       <h2 class="section-title">Gallery 📸</h2>
     </div>
     <div class="gallery-grid">
-      <div class="gallery-item g1 reveal">☕</div>
-      <div class="gallery-item g2 reveal">🤎</div>
-      <div class="gallery-item g3 reveal">✨</div>
-      <div class="gallery-item g4 reveal">🧋</div>
-      <div class="gallery-item g5 reveal">🌸</div>
-      <div class="gallery-item g6 reveal">💛</div>
+      <div class="gallery-item reveal">
+        <img src="hero-cup.jpg" alt="Cuppa Detroit branded cup" loading="lazy">
+      </div>
+      <div class="gallery-item reveal">
+        <img src="sampler-box.jpg" alt="Event Sampler Box" loading="lazy">
+      </div>
+      <div class="gallery-item reveal">
+        <img src="fresh-menu.jpg" alt="Fresh on the Menu" loading="lazy">
+      </div>
+      <a href="https://instagram.com/cuppadetroit" target="_blank" class="gallery-item gallery-gradient g1 reveal"><span>Follow ☕</span></a>
+      <a href="https://instagram.com/cuppadetroit" target="_blank" class="gallery-item gallery-gradient g2 reveal"><span>@cuppa 🤎</span></a>
+      <a href="https://instagram.com/cuppadetroit" target="_blank" class="gallery-item gallery-gradient g3 reveal"><span>detroit ✨</span></a>
     </div>
     <div class="gallery-cta reveal">
       <a href="https://instagram.com/cuppadetroit" target="_blank">Follow @cuppadetroit for more →</a>
@@ -984,7 +1051,7 @@ footer {
       <p>Ready to add a coffee cart to your next event? Fill out our form or slide into our DMs — we'd love to hear from you!</p>
       <div class="book-methods">
         <a href="https://forms.gle/nHkHVDi85KwurqEaA" target="_blank" class="btn btn-primary">Fill Out the Form</a>
-        <a href="https://instagram.com/cuppadetroit" target="_blank" class="btn btn-secondary">DM on Instagram</a>
+        <a href="https://instagram.com/cuppadetroit" target="_blank" class="btn btn-secondary-dark">DM on Instagram</a>
       </div>
     </div>
   </div>
@@ -992,10 +1059,14 @@ footer {
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">cuppa <span>detroit</span></div>
+  <div class="footer-logo">
+    <img src="logo.jpg" alt="Cuppa Detroit" class="footer-logo-img" loading="lazy">
+    <div class="footer-logo-text">cuppa <span>detroit</span></div>
+  </div>
   <div class="footer-tagline">Brewed in Detroit · Est 2024</div>
-  <div style="margin-bottom:1rem;color:var(--text-light);font-size:0.95rem;">
-    📧 cuppadetroit@gmail.com &nbsp;·&nbsp; 📞 313-333-0836
+  <div class="footer-contact">
+    <a href="mailto:cuppadetroit@gmail.com">📧 cuppadetroit@gmail.com</a> &nbsp;·&nbsp;
+    <a href="tel:3133330836">📞 313-333-0836</a>
   </div>
   <div class="footer-links">
     <a href="#story">Our Story</a>
@@ -1043,9 +1114,9 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-// Countdown to April 6, 2025
+// Countdown to April 6, 2026
 function updateCountdown() {
-  const target = new Date('2025-04-06T23:59:59').getTime();
+  const target = new Date('2026-04-06T23:59:59').getTime();
   const now = Date.now();
   const diff = target - now;
   if (diff <= 0) {

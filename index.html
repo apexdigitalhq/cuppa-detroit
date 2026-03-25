@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cuppa Detroit — Coffee Cart & Catering</title>
+<meta name="description" content="Detroit's cutest mobile coffee cart. Specialty lattes, event catering, and good vibes. Brewed in Detroit, est. 2024.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --cream: #F5EDE3;
+  --warm-white: #FBF8F4;
+  --brown: #5C4033;
+  --light-brown: #8B6F5E;
+  --rose: #D4848C;
+  --rose-light: #E8B4B8;
+  --gold: #C9A96E;
+  --gold-light: #D4BE8E;
+  --text: #3A2E26;
+  --text-light: #7A6B5D;
+  --radius: 20px;
+  --radius-sm: 12px;
+  --shadow: 0 4px 24px rgba(92,64,51,0.08);
+  --shadow-hover: 0 8px 32px rgba(92,64,51,0.14);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--warm-white);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Grain overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px;
+}
+
+.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+/* REVEAL ANIMATIONS */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  padding: 12px 20px;
+  background: rgba(251,248,244,0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(92,64,51,0.06);
+  transition: box-shadow 0.3s;
+}
+nav.scrolled { box-shadow: 0 2px 20px rgba(92,64,51,0.08); }
+.nav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--brown);
+  text-decoration: none;
+  letter-spacing: 0.5px;
+}
+.nav-logo span { color: var(--rose); }
+.nav-links {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+  align-items: center;
+}
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-light);
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: color 0.2s;
+  letter-spacing: 0.3px;
+}
+.nav-links a:hover { color: var(--rose); }
+.nav-cta {
+  background: var(--rose);
+  color: white !important;
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-weight: 600 !important;
+  transition: transform 0.2s, box-shadow 0.2s !important;
+}
+.nav-cta:hover { transform: scale(1.05); box-shadow: 0 4px 16px rgba(212,132,140,0.3); }
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+}
+.hamburger span {
+  width: 24px;
+  height: 2.5px;
+  background: var(--brown);
+  border-radius: 4px;
+  transition: transform 0.3s, opacity 0.3s;
+}
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+/* Mobile menu */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(251,248,244,0.97);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  font-size: 1.4rem;
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.mobile-menu a:hover { color: var(--rose); }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 120px 20px 80px;
+  position: relative;
+  background: var(--cream);
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(212,132,140,0.15), transparent 70%);
+  top: -100px; right: -100px;
+  border-radius: 50%;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(201,169,110,0.12), transparent 70%);
+  bottom: -50px; left: -80px;
+  border-radius: 50%;
+}
+.hero-content { position: relative; z-index: 1; max-width: 640px; }
+.hero-badge {
+  display: inline-block;
+  background: rgba(212,132,140,0.12);
+  color: var(--rose);
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.8rem, 8vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  color: var(--brown);
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--rose);
+}
+.hero p {
+  font-size: 1.1rem;
+  color: var(--text-light);
+  margin-bottom: 32px;
+  max-width: 440px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.hero-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  border-radius: 50px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  border: none;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-primary {
+  background: var(--rose);
+  color: white;
+  box-shadow: 0 4px 20px rgba(212,132,140,0.3);
+}
+.btn-primary:hover { box-shadow: 0 8px 28px rgba(212,132,140,0.4); }
+.btn-secondary {
+  background: transparent;
+  color: var(--brown);
+  border: 2px solid rgba(92,64,51,0.15);
+}
+.btn-secondary:hover { border-color: var(--rose); color: var(--rose); }
+
+/* Logo badge in hero */
+.hero-logo {
+  width: 120px; height: 120px;
+  margin: 0 auto 28px;
+  border-radius: 50%;
+  background: var(--brown);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: var(--cream);
+  position: relative;
+  box-shadow: 0 8px 32px rgba(92,64,51,0.2);
+}
+.hero-logo::before {
+  content: 'BREWED IN DETROIT · EST 2024';
+  position: absolute;
+  font-size: 0.5rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  bottom: 14px;
+  color: var(--gold);
+  font-weight: 500;
+}
+.logo-icon { font-size: 1.6rem; margin-bottom: 2px; }
+.logo-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.logo-sub { font-size: 0.45rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); }
+
+/* SECTIONS */
+section { padding: 80px 0; }
+.section-label {
+  display: inline-block;
+  background: rgba(212,132,140,0.1);
+  color: var(--rose);
+  padding: 6px 16px;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-weight: 700;
+  color: var(--brown);
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+.section-subtitle {
+  color: var(--text-light);
+  font-size: 1.05rem;
+  max-width: 520px;
+}
+
+/* STORY */
+.story { background: var(--warm-white); }
+.story-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  margin-top: 40px;
+}
+.story-image {
+  aspect-ratio: 4/5;
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, var(--cream), var(--rose-light));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  position: relative;
+  overflow: hidden;
+}
+.story-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+  border: 2px solid rgba(255,255,255,0.3);
+}
+.story-text p {
+  color: var(--text-light);
+  margin-bottom: 16px;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+.story-text .highlight {
+  color: var(--rose);
+  font-weight: 600;
+}
+.story-stats {
+  display: flex;
+  gap: 32px;
+  margin-top: 28px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(92,64,51,0.08);
+}
+.stat-item { text-align: center; }
+.stat-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--rose);
+}
+.stat-label { font-size: 0.75rem; color: var(--text-light); text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
+
+/* MENU */
+.menu { background: var(--cream); }
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 16px;
+  margin-top: 40px;
+}
+.menu-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 28px 20px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: default;
+}
+.menu-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
+.menu-emoji { font-size: 2.4rem; margin-bottom: 12px; display: block; }
+.menu-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--brown);
+  margin-bottom: 4px;
+}
+.menu-desc {
+  font-size: 0.78rem;
+  color: var(--text-light);
+}
+.menu-note {
+  text-align: center;
+  margin-top: 24px;
+  color: var(--text-light);
+  font-size: 0.9rem;
+}
+
+/* PACKAGES */
+.packages { background: var(--warm-white); }
+.package-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 40px;
+}
+.package-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 36px 28px;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.package-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+.package-card.featured {
+  background: var(--brown);
+  color: var(--cream);
+}
+.package-card.featured .package-tier,
+.package-card.featured .package-features li { color: var(--cream); opacity: 0.9; }
+.package-card.featured .package-price { color: var(--gold); }
+.package-badge {
+  position: absolute;
+  top: 16px; right: 16px;
+  background: var(--gold);
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 50px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.package-tier {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-light);
+  margin-bottom: 8px;
+}
+.package-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.package-price {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--rose);
+  margin-bottom: 16px;
+}
+.package-price small { font-size: 0.85rem; font-weight: 400; opacity: 0.7; }
+.package-features {
+  list-style: none;
+  margin-bottom: 24px;
+}
+.package-features li {
+  padding: 6px 0;
+  font-size: 0.88rem;
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.package-features li::before { content: '✓'; color: var(--gold); font-weight: 700; }
+
+/* Sampler box */
+.sampler-box {
+  margin-top: 28px;
+  background: linear-gradient(135deg, rgba(212,132,140,0.08), rgba(201,169,110,0.08));
+  border-radius: var(--radius);
+  padding: 28px;
+  text-align: center;
+}
+.sampler-box h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+}
+.sampler-price {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--rose);
+  font-family: 'Playfair Display', serif;
+}
+.sampler-box p { font-size: 0.88rem; color: var(--text-light); margin-top: 8px; }
+
+/* EVENTS */
+.events { background: var(--cream); }
+.event-cards { display: flex; flex-direction: column; gap: 16px; margin-top: 40px; }
+.event-card {
+  display: flex;
+  gap: 24px;
+  background: white;
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+  align-items: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.event-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
+.event-date {
+  min-width: 70px;
+  text-align: center;
+  padding: 12px;
+  background: var(--cream);
+  border-radius: var(--radius-sm);
+}
+.event-month {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--rose);
+}
+.event-day {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--brown);
+  line-height: 1;
+}
+.event-info h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 4px; }
+.event-info p { font-size: 0.85rem; color: var(--text-light); }
+.event-info .event-time { color: var(--gold); font-weight: 600; }
+
+/* GIVEAWAY */
+.giveaway {
+  background: linear-gradient(135deg, var(--brown), #4A3428);
+  color: var(--cream);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.giveaway::before {
+  content: '';
+  position: absolute;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(212,132,140,0.2), transparent 60%);
+  top: -200px; right: -200px;
+  border-radius: 50%;
+}
+.giveaway .section-label { background: rgba(201,169,110,0.2); color: var(--gold); }
+.giveaway .section-title { color: var(--cream); }
+.giveaway-prize {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 10vw, 5rem);
+  font-weight: 700;
+  color: var(--gold);
+  margin: 20px 0;
+  line-height: 1;
+}
+.giveaway-prize small { font-size: 0.4em; vertical-align: super; }
+.giveaway p { color: rgba(245,237,227,0.8); font-size: 1rem; margin-bottom: 8px; }
+.giveaway .countdown {
+  display: inline-flex;
+  gap: 8px;
+  margin: 24px 0;
+}
+.countdown-item {
+  background: rgba(255,255,255,0.1);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  min-width: 60px;
+  text-align: center;
+}
+.countdown-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--gold);
+  display: block;
+}
+.countdown-label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.7; }
+
+/* GALLERY */
+.gallery { background: var(--warm-white); }
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 40px;
+}
+.gallery-item {
+  aspect-ratio: 1;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  cursor: pointer;
+  transition: transform 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.gallery-item:hover { transform: scale(1.03); }
+.gallery-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(92,64,51,0);
+  transition: background 0.3s;
+  border-radius: var(--radius-sm);
+}
+.gallery-item:hover::after { background: rgba(92,64,51,0.05); }
+.g1 { background: linear-gradient(135deg, #E8D5C4, #D4848C40); }
+.g2 { background: linear-gradient(135deg, #D4BE8E40, #F5EDE3); }
+.g3 { background: linear-gradient(135deg, #C9A96E30, #E8B4B8); }
+.g4 { background: linear-gradient(135deg, #F5EDE3, #D4848C30); }
+.g5 { background: linear-gradient(135deg, #E8B4B8, #C9A96E30); }
+.g6 { background: linear-gradient(135deg, #D4848C20, #E8D5C4); }
+.gallery-cta {
+  text-align: center;
+  margin-top: 24px;
+}
+.gallery-cta a {
+  color: var(--rose);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: opacity 0.2s;
+}
+.gallery-cta a:hover { opacity: 0.7; }
+
+/* BOOK / CTA */
+.book {
+  background: var(--cream);
+  text-align: center;
+}
+.book-card {
+  background: white;
+  border-radius: 28px;
+  padding: 60px 40px;
+  max-width: 600px;
+  margin: 0 auto;
+  box-shadow: var(--shadow);
+}
+.book-card .section-title { margin-bottom: 12px; }
+.book-card p { color: var(--text-light); margin-bottom: 28px; }
+.book-methods {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* FOOTER */
+footer {
+  background: var(--brown);
+  color: var(--cream);
+  padding: 48px 20px;
+  text-align: center;
+}
+.footer-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.footer-logo span { color: var(--rose-light); }
+.footer-tagline {
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 24px;
+}
+.footer-links {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+.footer-links a {
+  color: rgba(245,237,227,0.7);
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--rose-light); }
+.footer-copy {
+  font-size: 0.75rem;
+  opacity: 0.5;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .story-grid { grid-template-columns: 1fr; gap: 32px; }
+  .story-image { max-height: 300px; }
+  .package-grid { grid-template-columns: 1fr; }
+  .event-card { flex-direction: column; text-align: center; gap: 12px; }
+  .menu-grid { grid-template-columns: repeat(2, 1fr); }
+  section { padding: 60px 0; }
+  .book-card { padding: 40px 24px; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 480px) {
+  .hero { padding: 100px 16px 60px; }
+  .hero h1 { font-size: 2.4rem; }
+  .hero-logo { width: 100px; height: 100px; }
+  .story-stats { gap: 20px; }
+  .countdown-item { padding: 10px 12px; min-width: 50px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">cuppa <span>detroit</span></a>
+    <ul class="nav-links">
+      <li><a href="#story">Our Story</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#packages">Packages</a></li>
+      <li><a href="#events">Events</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="https://forms.gle/nHkHVDi85KwurqEaA" target="_blank" class="nav-cta">Book Us ☕</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#story" onclick="closeMenu()">Our Story</a>
+  <a href="#menu" onclick="closeMenu()">Menu</a>
+  <a href="#packages" onclick="closeMenu()">Packages</a>
+  <a href="#events" onclick="closeMenu()">Events</a>
+  <a href="#giveaway" onclick="closeMenu()">Giveaway 🎉</a>
+  <a href="#gallery" onclick="closeMenu()">Gallery</a>
+  <a href="https://forms.gle/nHkHVDi85KwurqEaA" target="_blank" onclick="closeMenu()">Book Us ☕</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-logo">
+      <span class="logo-icon">☕</span>
+      <span class="logo-name">Cuppa Detroit</span>
+      <span class="logo-sub">Coffee</span>
+    </div>
+    <div class="hero-badge">Detroit's Cutest Coffee Cart</div>
+    <h1>Coffee First.<br><em>Everything Else</em> Later.</h1>
+    <p>Specialty lattes, good vibes, and a whole lot of love — served from our little cart to your big moments. ✨</p>
+    <div class="hero-buttons">
+      <a href="https://forms.gle/nHkHVDi85KwurqEaA" target="_blank" class="btn btn-primary">Book Your Event →</a>
+      <a href="#menu" class="btn btn-secondary">See the Menu</a>
+    </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="story" id="story">
+  <div class="container">
+    <div class="story-grid">
+      <div class="story-image reveal">☕</div>
+      <div class="story-text reveal">
+        <span class="section-label">Our Story</span>
+        <h2 class="section-title">From Our Kitchen<br>to Your City 💛</h2>
+        <p>It all started at home — just a girl, a dream, and way too many latte experiments in her kitchen. What began as a <span class="highlight">passion project</span> quickly became something bigger.</p>
+        <p>Now we're <span class="highlight">Detroit's mobile coffee cart</span>, popping up at markets, events, and celebrations across the city. Every cup we serve carries that same homemade love from day one.</p>
+        <p>The dream? <span class="highlight">Our own brick & mortar</span> coffee shop someday. A cozy little spot where the community can gather, sip something beautiful, and feel at home. We're not there yet — but we're brewing our way closer every single day. 🤎</p>
+        <div class="story-stats">
+          <div class="stat-item">
+            <div class="stat-number">2024</div>
+            <div class="stat-label">Est.</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">100+</div>
+            <div class="stat-label">Events</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">∞</div>
+            <div class="stat-label">Love</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu" id="menu">
+  <div class="container">
+    <div style="text-align:center" class="reveal">
+      <span class="section-label">The Menu</span>
+      <h2 class="section-title">What's Brewing ☕</h2>
+      <p class="section-subtitle" style="margin:0 auto 8px">Handcrafted drinks made with love (and really good espresso)</p>
+    </div>
+    <div class="menu-grid">
+      <div class="menu-card reveal">
+        <span class="menu-emoji">🌸</span>
+        <div class="menu-name">Saffron Latte</div>
+        <div class="menu-desc">Floral & golden</div>
+      </div>
+      <div class="menu-card reveal">
+        <span class="menu-emoji">🧊</span>
+        <div class="menu-name">Iced Latte</div>
+        <div class="menu-desc">Classic & refreshing</div>
+      </div>
+      <div class="menu-card reveal">
+        <span class="menu-emoji">🌰</span>
+        <div class="menu-name">Hazelnut Milk</div>
+        <div class="menu-desc">Nutty & smooth</div>
+      </div>
+      <div class="menu-card reveal">
+        <span class="menu-emoji">🌙</span>
+        <div class="menu-name">Layali Latte</div>
+        <div class="menu-desc">Dreamy & sweet</div>
+      </div>
+      <div class="menu-card reveal">
+        <span class="menu-emoji">🖤</span>
+        <div class="menu-name">Midnight Mocha</div>
+        <div class="menu-desc">Rich & indulgent</div>
+      </div>
+      <div class="menu-card reveal">
+        <span class="menu-emoji">🍫</span>
+        <div class="menu-name">Hot Chocolate</div>
+        <div class="menu-desc">Warm & cozy</div>
+      </div>
+    </div>
+    <p class="menu-note reveal">+ homemade desserts at every event 🍪</p>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section class="packages" id="packages">
+  <div class="container">
+    <div style="text-align:center" class="reveal">
+      <span class="section-label">Packages</span>
+      <h2 class="section-title">Let's Make It Happen ✨</h2>
+      <p class="section-subtitle" style="margin:0 auto">Weddings, birthdays, showers, private events — we bring the cart, the vibes, and the cleanup.</p>
+    </div>
+    <div class="package-grid">
+      <div class="package-card reveal">
+        <div class="package-tier">Tier One</div>
+        <div class="package-name">Silver</div>
+        <div class="package-price">$640 <small>starting</small></div>
+        <ul class="package-features">
+          <li>Up to 30 guests</li>
+          <li>Curated drink menu</li>
+          <li>2 hours of service</li>
+          <li>Full setup & cleanup</li>
+        </ul>
+        <a href="https://forms.gle/nHkHVDi85KwurqEaA" target="_blank" class="btn btn-secondary" style="width:100%;justify-content:center">Get Quote</a>
+      </div>
+      <div class="package-card featured reveal">
+        <div class="package-badge">Most Popular</div>
+        <div class="package-tier">Tier Two</div>
+        <div class="package-name">Gold</div>
+        <div class="package-price">Custom <small>quote</small></div>
+        <ul class="package-features">
+          <li>30-75 guests</li>
+          <li>Expanded drink menu</li>
+          <li>3 hours of service</li>
+          <li>Full setup & cleanup</li>
+          <li>Custom add-ons available</li>
+        </ul>
+        <a href="https://forms.gle/nHkHVDi85KwurqEaA" target="_blank" class="btn btn-primary" style="width:100%;justify-content:center">Get Quote</a>
+      </div>
+      <div class="package-card reveal">
+        <div class="package-tier">Tier Three</div>
+        <div class="package-name">Premium</div>
+        <div class="package-price">Custom <small>quote</small></div>
+        <ul class="package-features">
+          <li>75+ guests</li>
+          <li>Full specialty menu</li>
+          <li>4+ hours of service</li>
+          <li>Full setup & cleanup</li>
+          <li>Premium customization</li>
+        </ul>
+        <a href="https://forms.gle/nHkHVDi85KwurqEaA" target="_blank" class="btn btn-secondary" style="width:100%;justify-content:center">Get Quote</a>
+      </div>
+    </div>
+    <div class="sampler-box reveal">
+      <h3>🎁 Event Sampler Box</h3>
+      <div class="sampler-price">$22</div>
+      <p>Try 4 of our signature drinks before you book! Available by inquiry.<br>Fee is credited toward your event booking ✨</p>
+      <a href="https://forms.gle/nHkHVDi85KwurqEaA" target="_blank" class="btn btn-primary" style="margin-top:16px">Inquire Now</a>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section class="events" id="events">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-label">Upcoming Events</span>
+      <h2 class="section-title">Catch Us IRL 📍</h2>
+    </div>
+    <div class="event-cards">
+      <div class="event-card reveal">
+        <div class="event-date">
+          <div class="event-month">Mar</div>
+          <div class="event-day">28</div>
+        </div>
+        <div class="event-info">
+          <h3>Pop-Up at Raydiant Haus</h3>
+          <p>22065 W Outer Dr, Dearborn, MI</p>
+          <p class="event-time">8:00 AM – 3:00 PM</p>
+        </div>
+      </div>
+      <div class="event-card reveal">
+        <div class="event-date">
+          <div class="event-month">Apr</div>
+          <div class="event-day">11</div>
+        </div>
+        <div class="event-info">
+          <h3>Spring Bazaar at Pittsfield Acres Academy</h3>
+          <p>4377 Textile Rd, Ypsilanti, MI</p>
+          <p class="event-time">11:00 AM – 6:00 PM</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GIVEAWAY -->
+<section class="giveaway" id="giveaway">
+  <div class="container reveal">
+    <span class="section-label">🎉 Giveaway</span>
+    <h2 class="section-title">Win Big, Babe</h2>
+    <div class="giveaway-prize">$350<small>+</small></div>
+    <p>in prizes — because you deserve nice things</p>
+    <p style="font-weight:600;color:var(--gold)">Winner announced April 6th!</p>
+    <div class="countdown" id="countdown">
+      <div class="countdown-item"><span class="countdown-number" id="cd-days">--</span><span class="countdown-label">Days</span></div>
+      <div class="countdown-item"><span class="countdown-number" id="cd-hours">--</span><span class="countdown-label">Hrs</span></div>
+      <div class="countdown-item"><span class="countdown-number" id="cd-mins">--</span><span class="countdown-label">Min</span></div>
+      <div class="countdown-item"><span class="countdown-number" id="cd-secs">--</span><span class="countdown-label">Sec</span></div>
+    </div>
+    <br>
+    <a href="https://instagram.com/cuppadetroit" target="_blank" class="btn btn-primary">Enter on Instagram →</a>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="container">
+    <div style="text-align:center" class="reveal">
+      <span class="section-label">The Vibes</span>
+      <h2 class="section-title">Gallery 📸</h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item g1 reveal">☕</div>
+      <div class="gallery-item g2 reveal">🤎</div>
+      <div class="gallery-item g3 reveal">✨</div>
+      <div class="gallery-item g4 reveal">🧋</div>
+      <div class="gallery-item g5 reveal">🌸</div>
+      <div class="gallery-item g6 reveal">💛</div>
+    </div>
+    <div class="gallery-cta reveal">
+      <a href="https://instagram.com/cuppadetroit" target="_blank">Follow @cuppadetroit for more →</a>
+    </div>
+  </div>
+</section>
+
+<!-- BOOK -->
+<section class="book" id="book">
+  <div class="container reveal">
+    <div class="book-card">
+      <span class="section-label">Let's Connect</span>
+      <h2 class="section-title">Book Your Event 💌</h2>
+      <p>Ready to add a coffee cart to your next event? Fill out our form or slide into our DMs — we'd love to hear from you!</p>
+      <div class="book-methods">
+        <a href="https://forms.gle/nHkHVDi85KwurqEaA" target="_blank" class="btn btn-primary">Fill Out the Form</a>
+        <a href="https://instagram.com/cuppadetroit" target="_blank" class="btn btn-secondary">DM on Instagram</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">cuppa <span>detroit</span></div>
+  <div class="footer-tagline">Brewed in Detroit · Est 2024</div>
+  <div class="footer-links">
+    <a href="#story">Our Story</a>
+    <a href="#menu">Menu</a>
+    <a href="#packages">Packages</a>
+    <a href="#events">Events</a>
+    <a href="https://instagram.com/cuppadetroit" target="_blank">Instagram</a>
+    <a href="https://forms.gle/nHkHVDi85KwurqEaA" target="_blank">Book Us</a>
+  </div>
+  <div class="footer-copy">© 2024 Cuppa Detroit Coffee. Made with ☕ & 💛</div>
+</footer>
+
+<script>
+// Nav scroll effect
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+});
+
+// Hamburger menu
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  mobileMenu.classList.toggle('open');
+  document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+});
+function closeMenu() {
+  hamburger.classList.remove('active');
+  mobileMenu.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Reveal on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Countdown to April 6, 2025
+function updateCountdown() {
+  const target = new Date('2025-04-06T23:59:59').getTime();
+  const now = Date.now();
+  const diff = target - now;
+  if (diff <= 0) {
+    document.getElementById('cd-days').textContent = '🎉';
+    document.getElementById('cd-hours').textContent = '';
+    document.getElementById('cd-mins').textContent = '';
+    document.getElementById('cd-secs').textContent = '';
+    return;
+  }
+  const d = Math.floor(diff / 86400000);
+  const h = Math.floor((diff % 86400000) / 3600000);
+  const m = Math.floor((diff % 3600000) / 60000);
+  const s = Math.floor((diff % 60000) / 1000);
+  document.getElementById('cd-days').textContent = d;
+  document.getElementById('cd-hours').textContent = h;
+  document.getElementById('cd-mins').textContent = m;
+  document.getElementById('cd-secs').textContent = s;
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+</script>
+</body>
+</html>

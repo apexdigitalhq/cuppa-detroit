@@ -95,7 +95,6 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(92,64,51,0.08); }
   height: 36px;
   border-radius: 50%;
   object-fit: cover;
-  object-position: 65% center;
 }
 .nav-logo-text {
   font-family: 'Playfair Display', serif;
@@ -275,10 +274,9 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(92,64,51,0.08); }
   box-shadow: 0 8px 32px rgba(0,0,0,0.3);
 }
 .hero-logo img {
-  width: 250%;
+  width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 62% center;
 }
 
 /* SECTIONS */
@@ -373,11 +371,50 @@ section { padding: 80px 0; }
   border-radius: var(--radius);
   object-fit: cover;
 }
+
+/* Featured Drinks */
+.featured-drinks {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 40px;
+}
+.featured-drink-card {
+  background: white;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.featured-drink-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
+.featured-drink-card img {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  display: block;
+}
+.featured-drink-info {
+  padding: 16px;
+  text-align: center;
+}
+.featured-drink-info h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--brown);
+  margin-bottom: 4px;
+}
+.featured-drink-info p {
+  font-size: 0.8rem;
+  color: var(--text-light);
+}
+
+/* Classic menu grid */
 .menu-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
   gap: 16px;
-  margin-top: 40px;
+  margin-top: 32px;
 }
 .menu-card {
   background: white;
@@ -405,6 +442,39 @@ section { padding: 80px 0; }
   margin-top: 24px;
   color: var(--text-light);
   font-size: 0.9rem;
+}
+
+/* Desserts card */
+.desserts-card {
+  margin-top: 28px;
+  background: white;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  align-items: center;
+  gap: 24px;
+}
+.desserts-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.desserts-card-content {
+  padding: 24px 24px 24px 0;
+}
+.desserts-card-content h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--brown);
+  margin-bottom: 6px;
+}
+.desserts-card-content p {
+  font-size: 0.9rem;
+  color: var(--text-light);
 }
 
 /* PACKAGES */
@@ -511,6 +581,22 @@ section { padding: 80px 0; }
 }
 .sampler-box p { font-size: 0.88rem; color: var(--text-light); margin-top: 8px; }
 
+/* Skyline divider */
+.skyline-divider {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  background: #000;
+  line-height: 0;
+}
+.skyline-divider img {
+  width: 100%;
+  display: block;
+  opacity: 0.7;
+  max-height: 180px;
+  object-fit: cover;
+}
+
 /* EVENTS */
 .events { background: var(--cream); }
 .event-cards { display: flex; flex-direction: column; gap: 16px; margin-top: 40px; }
@@ -599,11 +685,75 @@ section { padding: 80px 0; }
 }
 .countdown-label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.7; }
 
+/* MERCH */
+.merch { background: var(--cream); }
+.merch-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  margin-top: 40px;
+}
+.merch-image {
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.merch-image img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+.merch-text h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--brown);
+  margin-bottom: 12px;
+}
+.merch-text p {
+  color: var(--text-light);
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+/* PRE-BOOKING BANNER */
+.prebook-banner {
+  background: linear-gradient(135deg, var(--gold), #B8943E);
+  color: white;
+  text-align: center;
+  padding: 40px 20px;
+}
+.prebook-banner h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.prebook-banner .prebook-amount {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 8px 0;
+}
+.prebook-banner p {
+  font-size: 0.95rem;
+  opacity: 0.95;
+  margin-bottom: 6px;
+}
+.prebook-banner .btn {
+  margin-top: 16px;
+  background: white;
+  color: var(--brown);
+}
+.prebook-banner .btn:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.2); }
+
 /* GALLERY */
 .gallery { background: var(--warm-white); }
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 12px;
   margin-top: 40px;
 }
@@ -613,41 +763,19 @@ section { padding: 80px 0; }
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2.5rem;
   cursor: pointer;
-  transition: transform 0.3s;
+  transition: transform 0.3s, box-shadow 0.3s;
   position: relative;
   overflow: hidden;
+  box-shadow: var(--shadow);
 }
-.gallery-item:hover { transform: scale(1.03); }
+.gallery-item:hover { transform: scale(1.04); box-shadow: var(--shadow-hover); }
 .gallery-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
-.gallery-item.gallery-gradient {
-  text-decoration: none;
-  color: white;
-  font-size: 1.6rem;
-  font-weight: 600;
-  font-family: 'Playfair Display', serif;
-}
-.gallery-item.gallery-gradient::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: inherit;
-  z-index: 0;
-}
-.gallery-item.gallery-gradient span {
-  position: relative;
-  z-index: 1;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.2);
-}
-.g1 { background: linear-gradient(135deg, var(--rose), var(--gold)); }
-.g2 { background: linear-gradient(135deg, var(--brown), var(--rose)); }
-.g3 { background: linear-gradient(135deg, var(--gold), var(--rose-light)); }
 .gallery-cta {
   text-align: center;
   margin-top: 24px;
@@ -687,8 +815,19 @@ section { padding: 80px 0; }
 footer {
   background: var(--brown);
   color: var(--cream);
-  padding: 48px 20px;
+  padding: 0;
   text-align: center;
+  position: relative;
+}
+.footer-skyline {
+  width: 100%;
+  display: block;
+  opacity: 0.3;
+  max-height: 120px;
+  object-fit: cover;
+}
+.footer-content {
+  padding: 48px 20px;
 }
 .footer-logo {
   display: inline-flex;
@@ -701,7 +840,6 @@ footer {
   height: 32px;
   border-radius: 50%;
   object-fit: cover;
-  object-position: 62% center;
 }
 .footer-logo-text {
   font-family: 'Playfair Display', serif;
@@ -754,12 +892,17 @@ footer {
   .story-image { max-height: 300px; }
   .package-grid { grid-template-columns: 1fr; }
   .event-card { flex-direction: column; text-align: center; gap: 12px; }
+  .featured-drinks { grid-template-columns: repeat(2, 1fr); }
   .menu-grid { grid-template-columns: repeat(2, 1fr); }
   section { padding: 60px 0; }
   .book-card { padding: 40px 24px; }
   .gallery-grid { grid-template-columns: repeat(2, 1fr); }
   .sampler-box { grid-template-columns: 1fr; text-align: center; }
   .sampler-box-img { max-width: 200px; margin: 0 auto; }
+  .merch-inner { grid-template-columns: 1fr; gap: 24px; }
+  .desserts-card { grid-template-columns: 1fr; }
+  .desserts-card img { max-height: 200px; }
+  .desserts-card-content { padding: 0 24px 24px; }
 }
 
 @media (max-width: 480px) {
@@ -768,6 +911,7 @@ footer {
   .hero-logo { width: 100px; height: 100px; }
   .story-stats { gap: 20px; }
   .countdown-item { padding: 10px 12px; min-width: 50px; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
 }
 </style>
 </head>
@@ -777,7 +921,7 @@ footer {
 <nav id="nav">
   <div class="nav-inner">
     <a href="#" class="nav-logo">
-      <img src="logo.jpg" alt="Cuppa Detroit" class="nav-logo-img">
+      <img src="logo-circle.jpg" alt="Cuppa Detroit" class="nav-logo-img">
       <div class="nav-logo-text">cuppa <span>detroit</span></div>
     </a>
     <ul class="nav-links">
@@ -812,7 +956,7 @@ footer {
   </div>
   <div class="hero-content">
     <div class="hero-logo">
-      <img src="logo.jpg" alt="Cuppa Detroit Logo">
+      <img src="logo-circle.jpg" alt="Cuppa Detroit Logo">
     </div>
     <div class="hero-badge">Detroit's Cutest Coffee Cart</div>
     <h1>Coffee First.<br><em>Everything Else</em> Later.</h1>
@@ -829,7 +973,7 @@ footer {
   <div class="container">
     <div class="story-grid">
       <div class="story-image reveal">
-        <img src="fresh-menu.jpg" alt="Fresh on the Menu — Cuppa Detroit iced drink" loading="lazy">
+        <img src="street-flyer.jpg" alt="Cuppa Detroit on the streets of Detroit" loading="lazy">
       </div>
       <div class="story-text reveal">
         <span class="section-label">Our Story</span>
@@ -863,8 +1007,41 @@ footer {
       <span class="section-label">The Menu</span>
       <h2 class="section-title">What's Brewing ☕</h2>
       <p class="section-subtitle" style="margin:0 auto 8px">Handcrafted drinks made with love (and really good espresso)</p>
-      <img src="fresh-menu.jpg" alt="Fresh on the Menu" class="menu-hero-img" loading="lazy">
     </div>
+
+    <!-- Featured Drinks with Real Photos -->
+    <div class="featured-drinks">
+      <div class="featured-drink-card reveal">
+        <img src="rose-latte.jpg" alt="Rose Latte" loading="lazy">
+        <div class="featured-drink-info">
+          <h3>Rose Latte</h3>
+          <p>Floral & layered with rose petals</p>
+        </div>
+      </div>
+      <div class="featured-drink-card reveal">
+        <img src="matcha-strawberry.jpg" alt="Matcha Strawberry" loading="lazy">
+        <div class="featured-drink-info">
+          <h3>Matcha Strawberry</h3>
+          <p>Green tea meets berry bliss</p>
+        </div>
+      </div>
+      <div class="featured-drink-card reveal">
+        <img src="layali-latte.jpg" alt="Layali Latte" loading="lazy">
+        <div class="featured-drink-info">
+          <h3>Layali Latte</h3>
+          <p>Dreamy with cookie crumble</p>
+        </div>
+      </div>
+      <div class="featured-drink-card reveal">
+        <img src="strawberry-lemon.jpg" alt="Strawberry Lemonade Refresher" loading="lazy">
+        <div class="featured-drink-info">
+          <h3>Strawberry Lemonade</h3>
+          <p>Sweet & refreshing</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Classic Menu Items -->
     <div class="menu-grid">
       <div class="menu-card reveal">
         <span class="menu-emoji">🌸</span>
@@ -897,7 +1074,15 @@ footer {
         <div class="menu-desc">Warm & cozy</div>
       </div>
     </div>
-    <p class="menu-note reveal">+ homemade desserts at every event 🍪</p>
+
+    <!-- Desserts -->
+    <div class="desserts-card reveal">
+      <img src="desserts.jpg" alt="Cuppa Detroit homemade desserts" loading="lazy">
+      <div class="desserts-card-content">
+        <h3>+ Homemade Desserts 🍪</h3>
+        <p>Beautifully packaged treats available at every event. The perfect pairing for your latte.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -951,7 +1136,7 @@ footer {
       </div>
     </div>
     <div class="sampler-box reveal">
-      <img src="sampler-box.jpg" alt="Cuppa Detroit Event Sampler Box" class="sampler-box-img" loading="lazy">
+      <img src="drink-carrier.jpg" alt="Cuppa Detroit 4-drink sampler carrier" class="sampler-box-img" loading="lazy">
       <div class="sampler-box-content">
         <h3>🎁 Event Sampler Box</h3>
         <div class="sampler-price">$22</div>
@@ -961,6 +1146,11 @@ footer {
     </div>
   </div>
 </section>
+
+<!-- SKYLINE DIVIDER -->
+<div class="skyline-divider">
+  <img src="detroit-skyline.jpg" alt="Detroit Skyline" loading="lazy">
+</div>
 
 <!-- EVENTS -->
 <section class="events" id="events">
@@ -996,6 +1186,18 @@ footer {
   </div>
 </section>
 
+<!-- FOUNDER PRE-BOOKING SPECIAL -->
+<div class="prebook-banner">
+  <div class="container reveal">
+    <h3>🔥 Founder Pre-Booking Special</h3>
+    <div class="prebook-amount">$150 OFF</div>
+    <p>Custom coffee cart package — booking March, April & May</p>
+    <p>Priority scheduling for weddings, engagements, corporate & community events</p>
+    <p style="font-weight:700;opacity:1">⚡ Limited availability — DM to pre-book</p>
+    <a href="https://instagram.com/cuppadetroit" target="_blank" class="btn">Pre-Book on Instagram →</a>
+  </div>
+</div>
+
 <!-- GIVEAWAY -->
 <section class="giveaway" id="giveaway">
   <div class="container reveal">
@@ -1015,6 +1217,26 @@ footer {
   </div>
 </section>
 
+<!-- MERCH -->
+<section class="merch" id="merch">
+  <div class="container">
+    <div style="text-align:center" class="reveal">
+      <span class="section-label">Merch</span>
+      <h2 class="section-title">Rep the Brand 🤎</h2>
+    </div>
+    <div class="merch-inner">
+      <div class="merch-image reveal">
+        <img src="merch-hoodies.jpg" alt="Cuppa Detroit branded hoodies" loading="lazy">
+      </div>
+      <div class="merch-text reveal">
+        <h3>Cuppa Detroit Hoodies</h3>
+        <p>Cozy, cute, and repping the D. Available in cream, brown, and black — each with our signature "Cuppa Detroit" script. Grab yours at our next pop-up!</p>
+        <a href="https://instagram.com/cuppadetroit" target="_blank" class="btn btn-primary">DM to Order →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- GALLERY -->
 <section class="gallery" id="gallery">
   <div class="container">
@@ -1024,17 +1246,29 @@ footer {
     </div>
     <div class="gallery-grid">
       <div class="gallery-item reveal">
-        <img src="hero-cup.jpg" alt="Cuppa Detroit branded cup" loading="lazy">
+        <img src="rose-latte.jpg" alt="Rose Latte" loading="lazy">
       </div>
       <div class="gallery-item reveal">
-        <img src="sampler-box.jpg" alt="Event Sampler Box" loading="lazy">
+        <img src="matcha-strawberry.jpg" alt="Matcha Strawberry" loading="lazy">
       </div>
       <div class="gallery-item reveal">
-        <img src="fresh-menu.jpg" alt="Fresh on the Menu" loading="lazy">
+        <img src="layali-latte.jpg" alt="Layali Latte" loading="lazy">
       </div>
-      <a href="https://instagram.com/cuppadetroit" target="_blank" class="gallery-item gallery-gradient g1 reveal"><span>Follow ☕</span></a>
-      <a href="https://instagram.com/cuppadetroit" target="_blank" class="gallery-item gallery-gradient g2 reveal"><span>@cuppa 🤎</span></a>
-      <a href="https://instagram.com/cuppadetroit" target="_blank" class="gallery-item gallery-gradient g3 reveal"><span>detroit ✨</span></a>
+      <div class="gallery-item reveal">
+        <img src="strawberry-lemon.jpg" alt="Strawberry Lemonade Refresher" loading="lazy">
+      </div>
+      <div class="gallery-item reveal">
+        <img src="drink-carrier.jpg" alt="4-drink sampler carrier" loading="lazy">
+      </div>
+      <div class="gallery-item reveal">
+        <img src="desserts.jpg" alt="Homemade desserts" loading="lazy">
+      </div>
+      <div class="gallery-item reveal">
+        <img src="merch-hoodies.jpg" alt="Cuppa Detroit hoodies" loading="lazy">
+      </div>
+      <div class="gallery-item reveal">
+        <img src="street-flyer.jpg" alt="Cuppa Detroit street flyer" loading="lazy">
+      </div>
     </div>
     <div class="gallery-cta reveal">
       <a href="https://instagram.com/cuppadetroit" target="_blank">Follow @cuppadetroit for more →</a>
@@ -1059,27 +1293,30 @@ footer {
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">
-    <img src="logo.jpg" alt="Cuppa Detroit" class="footer-logo-img" loading="lazy">
-    <div class="footer-logo-text">cuppa <span>detroit</span></div>
+  <img src="detroit-skyline.jpg" alt="Detroit Skyline" class="footer-skyline" loading="lazy">
+  <div class="footer-content">
+    <div class="footer-logo">
+      <img src="logo-circle.jpg" alt="Cuppa Detroit" class="footer-logo-img" loading="lazy">
+      <div class="footer-logo-text">cuppa <span>detroit</span></div>
+    </div>
+    <div class="footer-tagline">Brewed in Detroit · Est 2024</div>
+    <div class="footer-contact">
+      <a href="mailto:cuppadetroit@gmail.com">📧 cuppadetroit@gmail.com</a> &nbsp;·&nbsp;
+      <a href="tel:3133330836">📞 313-333-0836</a>
+    </div>
+    <div class="footer-links">
+      <a href="#story">Our Story</a>
+      <a href="#menu">Menu</a>
+      <a href="#packages">Packages</a>
+      <a href="#events">Events</a>
+      <a href="https://instagram.com/cuppadetroit" target="_blank">Instagram</a>
+      <a href="https://tiktok.com/@cuppadetroit" target="_blank">TikTok</a>
+      <a href="mailto:cuppadetroit@gmail.com">Email</a>
+      <a href="tel:3133330836">Call</a>
+      <a href="https://forms.gle/nHkHVDi85KwurqEaA" target="_blank">Book Us</a>
+    </div>
+    <div class="footer-copy">© 2026 Cuppa Detroit Coffee. Made with ☕ & 💛</div>
   </div>
-  <div class="footer-tagline">Brewed in Detroit · Est 2024</div>
-  <div class="footer-contact">
-    <a href="mailto:cuppadetroit@gmail.com">📧 cuppadetroit@gmail.com</a> &nbsp;·&nbsp;
-    <a href="tel:3133330836">📞 313-333-0836</a>
-  </div>
-  <div class="footer-links">
-    <a href="#story">Our Story</a>
-    <a href="#menu">Menu</a>
-    <a href="#packages">Packages</a>
-    <a href="#events">Events</a>
-    <a href="https://instagram.com/cuppadetroit" target="_blank">Instagram</a>
-    <a href="https://tiktok.com/@cuppadetroit" target="_blank">TikTok</a>
-    <a href="mailto:cuppadetroit@gmail.com">Email</a>
-    <a href="tel:3133330836">Call</a>
-    <a href="https://forms.gle/nHkHVDi85KwurqEaA" target="_blank">Book Us</a>
-  </div>
-  <div class="footer-copy">© 2026 Cuppa Detroit Coffee. Made with ☕ & 💛</div>
 </footer>
 
 <script>

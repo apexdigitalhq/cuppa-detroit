@@ -316,16 +316,32 @@ section{padding:5rem 1.5rem;position:relative}
 .matcha-whisk{display:inline-block;font-size:1.8rem;opacity:0;transition:opacity .3s}
 .matcha-whisk.spin{opacity:.6;animation:whisKSpin 1.2s ease-out forwards}
 /* Fullscreen bamboo whisk overlay */
-.whisk-overlay{position:fixed;inset:0;z-index:9999;pointer-events:none;display:flex;align-items:center;justify-content:center;background:rgba(15,12,8,.92);opacity:0;transition:opacity .15s}
+/* Fullscreen matcha whisk overlay — chasen mixing circle */
+.whisk-overlay{position:fixed;inset:0;z-index:9999;pointer-events:none;background:rgba(10,10,8,.93);opacity:0;transition:opacity .15s;overflow:hidden}
 .whisk-overlay.active{opacity:1}
-.whisk-overlay.fade-out{opacity:0;transition:opacity .3s}
-.whisk-stick{position:absolute;width:10px;height:180px;background:linear-gradient(to bottom,#d4b36a,#8b6914,#c4a35a,#8b6914);border-radius:5px;transform-origin:50% 100%}
-.whisk-head{position:relative;width:140px;height:140px}
-.whisk-tine{position:absolute;bottom:70px;left:50%;width:4px;height:90px;background:linear-gradient(to top,#d4b36a,#a07d2e);border-radius:3px;transform-origin:50% 100%}
-.whisk-assembly{display:flex;flex-direction:column;align-items:center;animation:whiskSwirl 1s ease-in-out forwards}
-@keyframes whiskSwirl{0%{transform:rotate(0deg) scale(.8);opacity:0}10%{opacity:1;transform:rotate(60deg) scale(1)}30%{transform:rotate(-45deg) scale(1.05)}50%{transform:rotate(180deg) scale(1)}70%{transform:rotate(-30deg) scale(1.05)}90%{transform:rotate(360deg) scale(1)}100%{transform:rotate(720deg) scale(.6);opacity:0}}
-.matcha-splash{position:absolute;border-radius:50%;background:rgba(74,124,89,.8);pointer-events:none;animation:splashOut 1s ease-out forwards}
-@keyframes splashOut{0%{transform:scale(0);opacity:1}50%{opacity:.6}100%{transform:scale(5);opacity:0}}
+.whisk-overlay.fade-out{opacity:0;transition:opacity .4s}
+/* SVG chasen rendered in JS — this is the mixing circle */
+.chasen-wrap{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
+.chasen-bowl{width:220px;height:220px;border-radius:50%;border:3px solid rgba(74,124,89,.4);position:relative;animation:bowlAppear .3s ease-out forwards;opacity:0}
+@keyframes bowlAppear{to{opacity:1}}
+.chasen-liquid{position:absolute;inset:8px;border-radius:50%;background:radial-gradient(circle,rgba(74,124,89,.7) 0%,rgba(74,124,89,.4) 60%,rgba(50,90,65,.2) 100%);animation:liquidSwirl 1s ease-in-out forwards}
+@keyframes liquidSwirl{0%{transform:rotate(0deg);opacity:.3}30%{opacity:.8}60%{opacity:.9}100%{transform:rotate(360deg);opacity:.6}}
+/* Whisk tines spinning on top of liquid */
+.chasen-tines{position:absolute;inset:20px;border-radius:50%;animation:tinesSpin 1s ease-in-out forwards}
+@keyframes tinesSpin{0%{transform:rotate(0deg)}100%{transform:rotate(720deg)}}
+.chasen-tine{position:absolute;top:50%;left:50%;width:2px;height:42%;background:linear-gradient(to top,rgba(196,163,90,.9),rgba(196,163,90,.3));border-radius:2px;transform-origin:50% 100%}
+/* Matcha flowing outward from bowl */
+.matcha-flow{position:absolute;top:50%;left:50%;border-radius:50%;background:radial-gradient(circle,rgba(74,124,89,.6),rgba(74,124,89,.2),transparent);pointer-events:none;opacity:0}
+@keyframes matchaFlowOut{0%{width:0;height:0;opacity:.8;transform:translate(-50%,-50%)}40%{opacity:.5}70%{opacity:.3}100%{width:250vw;height:250vw;opacity:0;transform:translate(-50%,-50%)}}
+.matcha-flow.expand{animation:matchaFlowOut 1.2s ease-out forwards}
+/* Matcha drips down screen */
+.matcha-drip{position:absolute;top:-10px;width:10px;border-radius:0 0 50% 50%;background:linear-gradient(to bottom,rgba(74,124,89,.8),rgba(74,124,89,.3),transparent);opacity:0}
+@keyframes matchaDripDown{0%{height:0;opacity:.9}40%{opacity:.7}70%{height:60vh;opacity:.4}100%{height:100vh;opacity:0}}
+.matcha-drip.fall{animation:matchaDripDown 1.5s ease-in forwards}
+/* Matcha splatter dots */
+.matcha-splat{position:absolute;border-radius:50%;background:rgba(74,124,89,.7);pointer-events:none;opacity:0}
+@keyframes splatOut{0%{transform:scale(0);opacity:.9}30%{opacity:.7;transform:scale(1)}60%{opacity:.4}100%{transform:scale(1.5);opacity:0}}
+.matcha-splat.splat{animation:splatOut 1s ease-out forwards}
 .matcha-dust{position:absolute;width:6px;height:6px;border-radius:50%;background:rgba(74,124,89,.5);pointer-events:none;opacity:0}
 .matcha-dust.animate{animation:matchaDust 2.5s ease-out forwards}
 
@@ -1288,24 +1304,45 @@ footer .footer-logo{width:70px;height:70px;border-radius:50%;margin:0 auto 1rem}
   if(matchaSection){
     var matchaObs = new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){
       e.target.classList.add('active');
-      // Fullscreen bamboo whisk swirl
+      // Fullscreen chasen mixing + matcha flow
       var overlay = document.createElement('div');
       overlay.className = 'whisk-overlay';
-      var assembly = document.createElement('div');
-      assembly.className = 'whisk-assembly';
-      var stick = document.createElement('div');
-      stick.className = 'whisk-stick';
-      var head = document.createElement('div');
-      head.className = 'whisk-head';
-      for(var t=0;t<12;t++){var tine=document.createElement('div');tine.className='whisk-tine';tine.style.transform='rotate('+(t*30)+'deg)';head.appendChild(tine);}
-      assembly.appendChild(head);
-      assembly.appendChild(stick);
-      overlay.appendChild(assembly);
-      // Matcha splashes
-      for(var s=0;s<6;s++){var sp=document.createElement('div');sp.className='matcha-splash';sp.style.width=sp.style.height=(15+Math.random()*25)+'px';sp.style.top=(30+Math.random()*40)+'%';sp.style.left=(20+Math.random()*60)+'%';sp.style.animationDelay=(200+s*120)+'ms';overlay.appendChild(sp);}
+      // Bowl with liquid
+      var wrap = document.createElement('div');
+      wrap.className = 'chasen-wrap';
+      var bowl = document.createElement('div');
+      bowl.className = 'chasen-bowl';
+      var liquid = document.createElement('div');
+      liquid.className = 'chasen-liquid';
+      bowl.appendChild(liquid);
+      // Tines spinning inside bowl
+      var tines = document.createElement('div');
+      tines.className = 'chasen-tines';
+      for(var t=0;t<16;t++){var tn=document.createElement('div');tn.className='chasen-tine';tn.style.transform='rotate('+(t*22.5)+'deg)';tines.appendChild(tn);}
+      bowl.appendChild(tines);
+      wrap.appendChild(bowl);
+      overlay.appendChild(wrap);
+      // Matcha flowing outward from center
+      var flow = document.createElement('div');
+      flow.className = 'matcha-flow';
+      overlay.appendChild(flow);
+      setTimeout(function(){flow.classList.add('expand')},500);
+      // Matcha drips down screen edges
+      var dripPositions = [5,15,28,42,55,68,82,92];
+      dripPositions.forEach(function(p,i){
+        var drip = document.createElement('div');
+        drip.className = 'matcha-drip';
+        drip.style.left = p + '%';
+        drip.style.width = (6 + Math.random()*8) + 'px';
+        drip.style.animationDelay = (400 + i*100) + 'ms';
+        overlay.appendChild(drip);
+        setTimeout(function(){drip.classList.add('fall')},400 + i*100);
+      });
+      // Matcha splatters
+      for(var s=0;s<12;s++){var sp=document.createElement('div');sp.className='matcha-splat';var sz=10+Math.random()*30;sp.style.width=sp.style.height=sz+'px';sp.style.top=(15+Math.random()*70)+'%';sp.style.left=(10+Math.random()*80)+'%';sp.style.animationDelay=(600+s*80)+'ms';overlay.appendChild(sp);setTimeout((function(el){return function(){el.classList.add('splat')}})(sp),600+s*80);}
       document.body.appendChild(overlay);
       requestAnimationFrame(function(){overlay.classList.add('active');});
-      setTimeout(function(){overlay.classList.add('fade-out');setTimeout(function(){overlay.remove()},400);},1000);
+      setTimeout(function(){overlay.classList.add('fade-out');setTimeout(function(){overlay.remove()},500);},1800);
       // Original matcha effects
       var whisk = document.getElementById('matchaWhisk');
       if(whisk) whisk.classList.add('spin');

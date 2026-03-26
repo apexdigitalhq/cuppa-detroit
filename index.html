@@ -130,8 +130,16 @@ img{max-width:100%;display:block}
 .hero-content{position:relative;z-index:2;padding:2rem;opacity:0;transform:translateY(30px);animation:heroContentReveal 1s ease-out 2.6s forwards}
 @keyframes heroContentReveal{0%{opacity:0;transform:translateY(30px)}100%{opacity:1;transform:translateY(0)}}
 
-.hero-logo{width:280px;height:280px;border-radius:50%;margin:0 auto 1.5rem;border:3px solid var(--amber);box-shadow:0 0 40px rgba(201,151,61,.2);opacity:0;animation:heroLogoFade .8s ease-out 2.2s forwards}
+.hero-logo-wrap{position:relative;display:inline-block;margin:0 auto 1.5rem}
+.hero-logo{width:280px;height:280px;border-radius:50%;border:3px solid var(--amber);box-shadow:0 0 40px rgba(201,151,61,.2);opacity:0;animation:heroLogoFade .8s ease-out 2.2s forwards}
 @keyframes heroLogoFade{0%{opacity:0;transform:scale(.95)}100%{opacity:1;transform:scale(1)}}
+/* Logo steam reveal */
+.logo-steam{position:absolute;bottom:50%;left:50%;width:3px;border-radius:50%;background:linear-gradient(to top,rgba(245,240,235,.25),rgba(245,240,235,.06),transparent);filter:blur(3px);opacity:0;pointer-events:none;transform:translateX(-50%)}
+.logo-steam.rise{animation:logoSteamRise var(--dur,3s) ease-out var(--delay,2s) forwards}
+@keyframes logoSteamRise{0%{opacity:0;height:0;bottom:30%}15%{opacity:.5}40%{opacity:.35;height:80px}60%{opacity:.2;height:120px;bottom:60%}100%{opacity:0;height:160px;bottom:85%;transform:translateX(-50%) scaleX(2)}}
+.logo-steam-wide{position:absolute;bottom:40%;left:50%;width:60px;height:80px;border-radius:50%;background:radial-gradient(ellipse,rgba(245,240,235,.08),transparent);filter:blur(10px);opacity:0;pointer-events:none;transform:translateX(-50%)}
+.logo-steam-wide.rise{animation:logoSteamWide 3s ease-out 2.1s forwards}
+@keyframes logoSteamWide{0%{opacity:0;transform:translateX(-50%) translateY(0) scale(.5)}30%{opacity:.2}50%{opacity:.12;transform:translateX(-50%) translateY(-40px) scale(1.2)}100%{opacity:0;transform:translateX(-50%) translateY(-100px) scale(2)}}
 
 .hero h1{font-size:clamp(3rem,8vw,6.5rem);letter-spacing:.2em;margin-bottom:.3rem;text-transform:uppercase;text-shadow:0 4px 30px rgba(0,0,0,.6);opacity:0;transform:translateY(20px);animation:headlineFadeUp .8s ease-out 2.8s forwards}
 .hero .tagline{font-size:1.2rem;color:var(--muted);margin-bottom:2.5rem;letter-spacing:.12em;text-transform:uppercase;opacity:0;transform:translateY(15px);animation:headlineFadeUp .8s ease-out 3s forwards}
@@ -463,6 +471,7 @@ footer .footer-logo{width:70px;height:70px;border-radius:50%;margin:0 auto 1rem}
   .menu-board{padding:2rem 1.5rem}
   .social-bar{font-size:.75rem;gap:1rem}
   .hero-logo{width:240px;height:240px}
+  .hero-logo-wrap{margin:0 auto 1.5rem}
   .hero{background-attachment:scroll}
   .intro-logo{width:140px;height:140px}
 }
@@ -531,7 +540,15 @@ footer .footer-logo{width:70px;height:70px;border-radius:50%;margin:0 auto 1rem}
   <div class="coffee-stain stain-fill" style="width:60px;height:60px;top:75%;right:15%"></div>
 
   <div class="hero-content">
-    <img src="logo-circle.jpg" alt="Cuppa Detroit" class="hero-logo">
+    <div class="hero-logo-wrap">
+      <img src="logo-circle.jpg" alt="Cuppa Detroit" class="hero-logo">
+      <div class="logo-steam rise" style="--delay:1.8s;--dur:3s;left:35%"></div>
+      <div class="logo-steam rise" style="--delay:2s;--dur:3.5s;left:50%;width:4px"></div>
+      <div class="logo-steam rise" style="--delay:2.2s;--dur:2.8s;left:65%"></div>
+      <div class="logo-steam rise" style="--delay:2.4s;--dur:3.2s;left:42%;width:2px"></div>
+      <div class="logo-steam rise" style="--delay:1.9s;--dur:3.8s;left:58%;width:3px"></div>
+      <div class="logo-steam-wide rise"></div>
+    </div>
     <h1>Brewed in Detroit</h1>
     <p class="tagline">Detroit's Signature Mobile Coffee Experience</p>
     <a href="#booking" class="btn btn-primary btn-pulse">Book Your Event</a>

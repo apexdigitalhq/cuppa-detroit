@@ -18,32 +18,40 @@ h1,h2,h3,h4{font-family:var(--font-head);font-weight:400;letter-spacing:.06em}
 a{color:var(--amber);text-decoration:none}
 img{max-width:100%;display:block}
 
-/* COFFEE DRIP ANIMATION */
-.drip-overlay{position:fixed;inset:0;z-index:10000;background:rgba(13,11,9,.95);display:flex;justify-content:space-around;align-items:flex-start;pointer-events:auto;animation:dripFadeOut .8s ease 2.8s forwards}
+/* COFFEE DRIP + BEANS ANIMATION (2 seconds) */
+.drip-overlay{position:fixed;inset:0;z-index:10000;background:rgba(13,11,9,.92);pointer-events:auto;animation:dripFadeOut .5s ease 1.8s forwards;overflow:hidden}
 .drip-overlay.done{pointer-events:none}
-.drip-stream{width:8px;height:0;border-radius:0 0 50% 50%;position:relative;top:-10px;animation:dripFall 2.6s ease-in forwards}
-.drip-stream:nth-child(1){background:rgba(44,24,16,.9);animation-delay:0s;width:10px}
-.drip-stream:nth-child(2){background:rgba(61,37,24,.85);animation-delay:.3s;width:6px}
-.drip-stream:nth-child(3){background:rgba(107,58,42,.8);animation-delay:.1s;width:12px}
-.drip-stream:nth-child(4){background:rgba(44,24,16,.9);animation-delay:.5s;width:7px}
-.drip-stream:nth-child(5){background:rgba(61,37,24,.85);animation-delay:.2s;width:9px}
-.drip-stream:nth-child(6){background:rgba(107,58,42,.8);animation-delay:.6s;width:5px}
-.drip-stream:nth-child(7){background:rgba(44,24,16,.9);animation-delay:.15s;width:11px}
-.drip-stream:nth-child(8){background:rgba(61,37,24,.85);animation-delay:.4s;width:8px}
-.drip-stream:nth-child(9){background:rgba(107,58,42,.8);animation-delay:.35s;width:6px}
-.drip-stream:nth-child(10){background:rgba(44,24,16,.9);animation-delay:.55s;width:10px}
-.drip-stream .drip-drop{position:absolute;bottom:-12px;left:50%;transform:translateX(-50%);width:14px;height:14px;border-radius:50% 50% 50% 0;transform:translateX(-50%) rotate(45deg);background:inherit;opacity:0;animation:dripDrop 1s ease-in forwards}
-.drip-stream:nth-child(odd) .drip-drop{animation-delay:1.2s}
-.drip-stream:nth-child(even) .drip-drop{animation-delay:1.5s}
+/* Coffee streams */
+.drip-stream{position:absolute;top:-10px;width:8px;height:0;border-radius:0 0 50% 50%;animation:dripFall 1.6s ease-in forwards}
+.drip-stream:nth-child(1){left:5%;background:rgba(101,67,33,.9);width:10px;animation-delay:0s}
+.drip-stream:nth-child(2){left:15%;background:rgba(61,37,24,.85);width:6px;animation-delay:.15s}
+.drip-stream:nth-child(3){left:28%;background:rgba(139,90,43,.8);width:14px;animation-delay:.05s}
+.drip-stream:nth-child(4){left:40%;background:rgba(80,45,22,.9);width:7px;animation-delay:.25s}
+.drip-stream:nth-child(5){left:55%;background:rgba(120,72,34,.85);width:11px;animation-delay:.1s}
+.drip-stream:nth-child(6){left:65%;background:rgba(61,37,24,.8);width:5px;animation-delay:.3s}
+.drip-stream:nth-child(7){left:75%;background:rgba(101,67,33,.9);width:12px;animation-delay:.08s}
+.drip-stream:nth-child(8){left:88%;background:rgba(139,90,43,.85);width:8px;animation-delay:.2s}
+/* Coffee beans */
+.coffee-bean{position:absolute;top:-40px;width:20px;height:28px;background:radial-gradient(ellipse at 40% 40%, #5a3a1a 0%, #3d2518 60%, #2a1810 100%);border-radius:50%;box-shadow:inset -2px -2px 4px rgba(0,0,0,.5),inset 2px 1px 3px rgba(139,90,43,.3);animation:beanFall 1.4s ease-in forwards;opacity:.9}
+.coffee-bean::after{content:'';position:absolute;top:30%;left:35%;width:30%;height:40%;border-left:2px solid rgba(0,0,0,.4);border-radius:50%;transform:rotate(-10deg)}
+.coffee-bean:nth-child(9){left:10%;width:18px;height:24px;animation-delay:.1s;transform:rotate(25deg)}
+.coffee-bean:nth-child(10){left:22%;width:22px;height:30px;animation-delay:.3s;transform:rotate(-15deg)}
+.coffee-bean:nth-child(11){left:35%;width:16px;height:22px;animation-delay:.05s;transform:rotate(40deg)}
+.coffee-bean:nth-child(12){left:50%;width:20px;height:28px;animation-delay:.2s;transform:rotate(-30deg)}
+.coffee-bean:nth-child(13){left:62%;width:24px;height:32px;animation-delay:.15s;transform:rotate(10deg)}
+.coffee-bean:nth-child(14){left:78%;width:18px;height:24px;animation-delay:.35s;transform:rotate(-45deg)}
+.coffee-bean:nth-child(15){left:90%;width:20px;height:26px;animation-delay:.08s;transform:rotate(20deg)}
+.coffee-bean:nth-child(16){left:45%;width:15px;height:20px;animation-delay:.4s;transform:rotate(55deg)}
+.coffee-bean:nth-child(17){left:70%;width:22px;height:28px;animation-delay:.25s;transform:rotate(-20deg)}
 @keyframes dripFall{
   0%{height:0}
-  60%{height:110vh}
+  70%{height:110vh}
   100%{height:110vh}
 }
-@keyframes dripDrop{
-  0%{opacity:0;bottom:-12px}
-  30%{opacity:.8}
-  100%{opacity:0;bottom:-60px}
+@keyframes beanFall{
+  0%{top:-40px;opacity:.9}
+  80%{opacity:.7}
+  100%{top:110vh;opacity:0}
 }
 @keyframes dripFadeOut{
   0%{opacity:1}
@@ -187,16 +195,23 @@ footer .footer-logo{width:70px;height:70px;border-radius:50%;margin:0 auto 1rem}
 
 <!-- COFFEE DRIP OVERLAY -->
 <div class="drip-overlay" id="dripOverlay">
-  <div class="drip-stream"><div class="drip-drop"></div></div>
-  <div class="drip-stream"><div class="drip-drop"></div></div>
-  <div class="drip-stream"><div class="drip-drop"></div></div>
-  <div class="drip-stream"><div class="drip-drop"></div></div>
-  <div class="drip-stream"><div class="drip-drop"></div></div>
-  <div class="drip-stream"><div class="drip-drop"></div></div>
-  <div class="drip-stream"><div class="drip-drop"></div></div>
-  <div class="drip-stream"><div class="drip-drop"></div></div>
-  <div class="drip-stream"><div class="drip-drop"></div></div>
-  <div class="drip-stream"><div class="drip-drop"></div></div>
+  <div class="drip-stream"></div>
+  <div class="drip-stream"></div>
+  <div class="drip-stream"></div>
+  <div class="drip-stream"></div>
+  <div class="drip-stream"></div>
+  <div class="drip-stream"></div>
+  <div class="drip-stream"></div>
+  <div class="drip-stream"></div>
+  <div class="coffee-bean"></div>
+  <div class="coffee-bean"></div>
+  <div class="coffee-bean"></div>
+  <div class="coffee-bean"></div>
+  <div class="coffee-bean"></div>
+  <div class="coffee-bean"></div>
+  <div class="coffee-bean"></div>
+  <div class="coffee-bean"></div>
+  <div class="coffee-bean"></div>
 </div>
 
 <!-- SOCIAL BAR -->
@@ -252,7 +267,6 @@ footer .footer-logo{width:70px;height:70px;border-radius:50%;margin:0 auto 1rem}
 <!-- FEATURED PHOTOS -->
 <section style="background:var(--bg);padding:4rem 1.5rem 2rem;text-align:center">
   <div class="container reveal">
-    <img src="fresh-menu-promo.jpg" alt="Cuppa Detroit - Fresh on the Menu" style="width:100%;max-width:900px;margin:0 auto 2rem;border:2px solid rgba(201,151,61,.4);box-shadow:0 8px 60px rgba(201,151,61,.15)">
     <img src="porsche-drinks.jpg" alt="Cuppa Detroit drinks on a gold Porsche" style="width:100%;max-width:900px;margin:0 auto;border:2px solid rgba(201,151,61,.4);box-shadow:0 8px 60px rgba(201,151,61,.15);filter:saturate(.9) contrast(1.05)">
   </div>
 </section>
@@ -435,7 +449,7 @@ footer .footer-logo{width:70px;height:70px;border-radius:50%;margin:0 auto 1rem}
 
 <script>
 // Remove drip overlay after animation
-setTimeout(function(){document.getElementById('dripOverlay').classList.add('done')},3600);
+setTimeout(function(){document.getElementById('dripOverlay').classList.add('done')},2400);
 
 // Countdown to April 8, 2026
 (function(){

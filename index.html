@@ -19,10 +19,10 @@ a{color:var(--amber);text-decoration:none}
 img{max-width:100%;display:block}
 
 /* COFFEE DRIP + BEANS ANIMATION (2 seconds) */
-.drip-overlay{position:fixed;inset:0;z-index:10000;background:rgba(13,11,9,.92);pointer-events:auto;animation:dripFadeOut .5s ease 1.8s forwards;overflow:hidden}
+.drip-overlay{position:fixed;inset:0;z-index:10000;background:rgba(13,11,9,.92);pointer-events:auto;animation:dripFadeOut .4s ease .9s forwards;overflow:hidden}
 .drip-overlay.done{pointer-events:none}
 /* Coffee streams */
-.drip-stream{position:absolute;top:-10px;width:8px;height:0;border-radius:0 0 50% 50%;animation:dripFall 1.6s ease-in forwards}
+.drip-stream{position:absolute;top:-10px;width:8px;height:0;border-radius:0 0 50% 50%;animation:dripFall .9s ease-in forwards}
 .drip-stream:nth-child(1){left:5%;background:rgba(101,67,33,.9);width:10px;animation-delay:0s}
 .drip-stream:nth-child(2){left:15%;background:rgba(61,37,24,.85);width:6px;animation-delay:.15s}
 .drip-stream:nth-child(3){left:28%;background:rgba(139,90,43,.8);width:14px;animation-delay:.05s}
@@ -32,7 +32,7 @@ img{max-width:100%;display:block}
 .drip-stream:nth-child(7){left:75%;background:rgba(101,67,33,.9);width:12px;animation-delay:.08s}
 .drip-stream:nth-child(8){left:88%;background:rgba(139,90,43,.85);width:8px;animation-delay:.2s}
 /* Coffee beans */
-.coffee-bean{position:absolute;top:-40px;width:20px;height:28px;background:radial-gradient(ellipse at 40% 40%, #5a3a1a 0%, #3d2518 60%, #2a1810 100%);border-radius:50%;box-shadow:inset -2px -2px 4px rgba(0,0,0,.5),inset 2px 1px 3px rgba(139,90,43,.3);animation:beanFall 1.4s ease-in forwards;opacity:.9}
+.coffee-bean{position:absolute;top:-40px;width:20px;height:28px;background:radial-gradient(ellipse at 40% 40%, #5a3a1a 0%, #3d2518 60%, #2a1810 100%);border-radius:50%;box-shadow:inset -2px -2px 4px rgba(0,0,0,.5),inset 2px 1px 3px rgba(139,90,43,.3);animation:beanFall .8s ease-in forwards;opacity:.9}
 .coffee-bean::after{content:'';position:absolute;top:30%;left:35%;width:30%;height:40%;border-left:2px solid rgba(0,0,0,.4);border-radius:50%;transform:rotate(-10deg)}
 .coffee-bean:nth-child(9){left:10%;width:18px;height:24px;animation-delay:.1s;transform:rotate(25deg)}
 .coffee-bean:nth-child(10){left:22%;width:22px;height:30px;animation-delay:.3s;transform:rotate(-15deg)}
@@ -256,8 +256,9 @@ footer .footer-logo{width:70px;height:70px;border-radius:50%;margin:0 auto 1rem}
     <div class="rust-line"></div>
     <div class="about-grid">
       <div class="about-text">
-        <p>Cuppa Detroit is a mobile espresso bar bringing handcrafted specialty drinks to weddings, private events, pop-ups, corporate functions, and community experiences across Metro Detroit.</p>
-        <p>We've already served multiple events and we're just getting started. Every cup is crafted with care — from our signature lattes to our famous hot cocoa. We bring the full coffee shop experience directly to your event.</p>
+        <p>Cuppa Detroit started as a homegrown dream — built from my own kitchen with a passion for coffee, creativity, and community. Every detail has been created by me, from designing the coffee cart to developing our drinks and advertising. What began as late-night learning and experimenting has grown into a mobile espresso bar, serving pop-ups, private events, and gatherings across Metro Detroit.</p>
+        <p>For me, coffee is never just a transaction. It's about real conversations, meaningful connections, and creating moments that feel warm and personal.</p>
+        <p>My goal is to continue growing Cuppa Detroit and one day open a brick-and-mortar café where the community can come together and feel at home. Until then, you'll find us around the city — brewing with intention and serving Detroit one cup at a time.</p>
       </div>
     </div>
   </div>
@@ -448,7 +449,7 @@ footer .footer-logo{width:70px;height:70px;border-radius:50%;margin:0 auto 1rem}
 
 <script>
 // Remove drip overlay after animation
-setTimeout(function(){document.getElementById('dripOverlay').classList.add('done')},2400);
+setTimeout(function(){document.getElementById('dripOverlay').classList.add('done')},1400);
 
 // Countdown to April 8, 2026
 (function(){

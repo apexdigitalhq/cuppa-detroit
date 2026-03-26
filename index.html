@@ -67,13 +67,13 @@ img{max-width:100%;display:block}
 
 /* 1. Espresso Spill Wipe */
 .transition-espresso-spill{position:relative;height:60px;overflow:hidden}
-.transition-espresso-spill::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 0%,rgba(61,37,24,.4) 20%,rgba(107,58,42,.6) 50%,rgba(61,37,24,.4) 80%,transparent 100%);transform:translateX(-100%);opacity:0;transition:none}
+.transition-espresso-spill::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 0%,rgba(61,37,24,.6) 15%,rgba(107,58,42,.85) 50%,rgba(61,37,24,.6) 85%,transparent 100%);transform:translateX(-100%);opacity:0;transition:none}
 .transition-espresso-spill.animated::before{animation:espressoSpillWipe 1.5s ease-out forwards}
 @keyframes espressoSpillWipe{0%{transform:translateX(-100%);opacity:0}20%{opacity:1}100%{transform:translateX(0);opacity:.3}}
 
 /* 2. Cream Swirl Reveal */
 .transition-cream-swirl{position:relative;height:60px;overflow:hidden}
-.transition-cream-swirl::before{content:'';position:absolute;top:50%;left:50%;width:0;height:0;border-radius:50%;background:radial-gradient(circle,rgba(245,240,235,.08) 0%,rgba(245,240,235,.02) 50%,transparent 70%);transform:translate(-50%,-50%);opacity:0}
+.transition-cream-swirl::before{content:'';position:absolute;top:50%;left:50%;width:0;height:0;border-radius:50%;background:radial-gradient(circle,rgba(245,240,235,.15) 0%,rgba(245,240,235,.06) 50%,transparent 70%);transform:translate(-50%,-50%);opacity:0}
 .transition-cream-swirl.animated::before{animation:creamSwirlReveal 2s ease-out forwards}
 @keyframes creamSwirlReveal{0%{width:0;height:0;opacity:0}50%{opacity:1}100%{width:400px;height:400px;opacity:.15}}
 
@@ -90,14 +90,15 @@ img{max-width:100%;display:block}
 
 /* 4. Coffee Ring Stain */
 .transition-coffee-ring{position:relative;height:80px;display:flex;align-items:center;justify-content:center}
-.transition-coffee-ring::before{content:'';width:60px;height:60px;border-radius:50%;border:3px solid rgba(107,58,42,0);box-shadow:0 0 0 rgba(139,69,19,0);opacity:0;transition:none}
+.transition-coffee-ring::before{content:'';width:70px;height:70px;border-radius:50%;border:3px solid rgba(107,58,42,0);box-shadow:0 0 0 rgba(139,69,19,0);opacity:0;transition:none}
 .transition-coffee-ring.animated::before{animation:coffeeRingAppear 2s ease-out forwards}
 @keyframes coffeeRingAppear{0%{opacity:0;border-color:rgba(107,58,42,0);box-shadow:0 0 0 rgba(139,69,19,0)}50%{opacity:1;border-color:rgba(107,58,42,.25)}100%{opacity:.4;border-color:rgba(107,58,42,.15);box-shadow:0 0 20px 5px rgba(139,69,19,.05)}}
 
 /* 5. Crema Ripple */
-.transition-crema-ripple{position:relative;height:30px;overflow:hidden}
-.transition-crema-ripple::before{content:'';position:absolute;bottom:0;width:100%;height:100%;background:linear-gradient(0deg,rgba(201,151,61,.1) 0%,transparent 100%);animation:cremaRipple 4s ease-in-out infinite}
-@keyframes cremaRipple{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.3)}}
+.transition-crema-ripple{position:relative;height:40px;overflow:hidden}
+.transition-crema-ripple::before{content:'';position:absolute;bottom:0;width:100%;height:100%;background:linear-gradient(0deg,rgba(201,151,61,.2) 0%,rgba(201,151,61,.05) 50%,transparent 100%);transform:scaleY(0);transform-origin:bottom;opacity:0}
+.transition-crema-ripple.animated::before{animation:cremaRippleIn 2s ease-out forwards}
+@keyframes cremaRippleIn{0%{transform:scaleY(0);opacity:0}30%{transform:scaleY(1.4);opacity:1}60%{transform:scaleY(.8)}100%{transform:scaleY(1);opacity:.7}}
 
 /* ═══════════════════════════════════════════
    HERO
@@ -398,15 +399,18 @@ footer{background:#080706;padding:3rem 1.5rem;text-align:center;border-top:1px s
 /* Night skyline feel */
 footer::before{content:'';position:absolute;bottom:0;left:0;width:100%;height:80px;background:linear-gradient(to top,rgba(8,7,6,.95),transparent);pointer-events:none}
 /* Cafe window glow */
-.footer-window-glow{position:absolute;top:20px;right:15%;width:6px;height:6px;border-radius:50%;background:rgba(201,151,61,.6);box-shadow:0 0 10px rgba(201,151,61,.3);animation:cafeWindowFlicker 4s ease-in-out infinite}
-@keyframes cafeWindowFlicker{0%,100%{opacity:.5;box-shadow:0 0 8px rgba(201,151,61,.2)}30%{opacity:.8;box-shadow:0 0 15px rgba(201,151,61,.4)}60%{opacity:.4}80%{opacity:.7;box-shadow:0 0 12px rgba(201,151,61,.35)}}
+.footer-window-glow{position:absolute;top:20px;right:15%;width:10px;height:10px;border-radius:50%;background:rgba(201,151,61,.8);box-shadow:0 0 20px rgba(201,151,61,.5),0 0 40px rgba(201,151,61,.2);animation:cafeWindowFlicker 4s ease-in-out infinite}
+.footer-window-glow-2{position:absolute;top:25px;left:25%;width:8px;height:8px;border-radius:50%;background:rgba(201,151,61,.6);box-shadow:0 0 15px rgba(201,151,61,.4),0 0 30px rgba(201,151,61,.15);animation:cafeWindowFlicker 5s ease-in-out 1.5s infinite}
+@keyframes cafeWindowFlicker{0%,100%{opacity:.5;box-shadow:0 0 15px rgba(201,151,61,.3)}20%{opacity:.9;box-shadow:0 0 25px rgba(201,151,61,.6)}40%{opacity:.3}60%{opacity:.85;box-shadow:0 0 20px rgba(201,151,61,.5)}80%{opacity:.4}}
 
 /* Footer steam */
-.footer-steam{position:absolute;bottom:0;width:2px;height:40px;background:linear-gradient(to top,rgba(245,240,235,.06),transparent);border-radius:50%;filter:blur(3px);opacity:0;pointer-events:none}
-.footer-steam:nth-child(1){left:20%;animation:footerSteamRise 6s ease-in-out infinite}
-.footer-steam:nth-child(2){left:50%;animation:footerSteamRise 7s ease-in-out 2s infinite}
-.footer-steam:nth-child(3){left:80%;animation:footerSteamRise 5.5s ease-in-out 4s infinite}
-@keyframes footerSteamRise{0%{opacity:0;transform:translateY(0)}20%{opacity:.1}50%{opacity:.05}100%{opacity:0;transform:translateY(-60px)}}
+.footer-steam{position:absolute;bottom:0;width:3px;height:60px;background:linear-gradient(to top,rgba(245,240,235,.12),transparent);border-radius:50%;filter:blur(4px);opacity:0;pointer-events:none}
+.footer-steam:nth-child(1){left:15%;animation:footerSteamRise 5s ease-in-out infinite}
+.footer-steam:nth-child(2){left:35%;animation:footerSteamRise 6s ease-in-out 1s infinite}
+.footer-steam:nth-child(3){left:55%;animation:footerSteamRise 5.5s ease-in-out 2.5s infinite}
+.footer-steam:nth-child(4){left:75%;animation:footerSteamRise 7s ease-in-out 3.5s infinite}
+.footer-steam:nth-child(5){left:90%;animation:footerSteamRise 4.5s ease-in-out 1.5s infinite}
+@keyframes footerSteamRise{0%{opacity:0;transform:translateY(0) scaleX(1)}15%{opacity:.15}30%{transform:translateY(-25px) scaleX(1.3)}50%{opacity:.08;transform:translateY(-50px) scaleX(.8)}100%{opacity:0;transform:translateY(-90px) scaleX(1.5)}}
 
 footer .footer-logo{width:70px;height:70px;border-radius:50%;margin:0 auto 1rem}
 .footer-links{display:flex;justify-content:center;gap:1.5rem;margin:1rem 0;flex-wrap:wrap;font-size:.9rem}
@@ -722,6 +726,8 @@ footer .footer-logo{width:70px;height:70px;border-radius:50%;margin:0 auto 1rem}
   <img src="detroit-skyline-outline.jpg" alt="Detroit Skyline">
 </div>
 
+<div class="transition-crema-ripple" data-transition></div>
+
 <!-- EVENT PACKAGES -->
 <section class="packages" id="packages">
   <div class="container reveal">
@@ -828,6 +834,8 @@ footer .footer-logo{width:70px;height:70px;border-radius:50%;margin:0 auto 1rem}
   </div>
 </section>
 
+<div class="transition-cream-swirl" data-transition></div>
+
 <!-- CATCH US IRL -->
 <section class="events" id="events">
   <div class="container reveal">
@@ -883,7 +891,7 @@ footer .footer-logo{width:70px;height:70px;border-radius:50%;margin:0 auto 1rem}
 </section>
 
 <!-- TRANSITION: Crema Ripple -->
-<div class="transition-crema-ripple"></div>
+<div class="transition-crema-ripple" data-transition></div>
 
 <!-- REVIEWS / SOCIAL PROOF -->
 <section style="background:var(--bg);padding:5rem 1.5rem">
@@ -1022,7 +1030,10 @@ footer .footer-logo{width:70px;height:70px;border-radius:50%;margin:0 auto 1rem}
   <div class="footer-steam"></div>
   <div class="footer-steam"></div>
   <div class="footer-steam"></div>
+  <div class="footer-steam"></div>
+  <div class="footer-steam"></div>
   <div class="footer-window-glow"></div>
+  <div class="footer-window-glow-2"></div>
   <img src="logo-circle.jpg" alt="Cuppa Detroit" class="footer-logo">
   <div class="footer-links">
     <a href="https://instagram.com/cuppadetroit" target="_blank">Instagram</a>

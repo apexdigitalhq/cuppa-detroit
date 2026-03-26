@@ -47,43 +47,43 @@ img{max-width:100%;display:block}
 @keyframes introLogoReveal{0%{opacity:0;transform:scale(.8)}100%{opacity:1;transform:scale(1)}}
 
 /* Steam behind logo */
-.intro-steam{position:absolute;width:3px;height:60px;background:linear-gradient(to top,rgba(245,240,235,.15),transparent);border-radius:50%;filter:blur(4px);opacity:0;z-index:1}
-.intro-steam:nth-child(8){animation:introSteamRise 3s ease-out 1.6s forwards;left:calc(50% - 20px)}
-.intro-steam:nth-child(9){animation:introSteamRise 3.5s ease-out 1.8s forwards;left:calc(50% + 15px)}
+.intro-steam{position:absolute;width:5px;height:100px;background:linear-gradient(to top,rgba(245,240,235,.4),rgba(245,240,235,.1),transparent);border-radius:50%;filter:blur(3px);opacity:0;z-index:1}
+.intro-steam:nth-child(8){animation:introSteamRise 3s ease-out 1.6s forwards;left:calc(50% - 25px)}
+.intro-steam:nth-child(9){animation:introSteamRise 3.5s ease-out 1.8s forwards;left:calc(50% + 20px)}
 .intro-steam:nth-child(10){animation:introSteamRise 2.8s ease-out 2s forwards;left:50%}
-@keyframes introSteamRise{0%{opacity:0;transform:translateY(0)}20%{opacity:.2}60%{opacity:.1}100%{opacity:0;transform:translateY(-120px) scaleX(.5)}}
+@keyframes introSteamRise{0%{opacity:0;transform:translateY(0)}20%{opacity:.6}60%{opacity:.3}100%{opacity:0;transform:translateY(-180px) scaleX(1.5)}}
 
 /* ═══════════════════════════════════════════
    PARALLAX LAYERS
    ═══════════════════════════════════════════ */
 .parallax-bg{position:fixed;top:0;left:0;width:100%;height:120vh;z-index:-2;will-change:transform;pointer-events:none}
-.parallax-skyline{position:absolute;bottom:0;width:100%;height:300px;background:url('detroit-skyline-outline.jpg') center bottom/cover no-repeat;opacity:.18;filter:blur(0.5px)}
-.parallax-fog{position:absolute;bottom:0;width:200%;height:250px;background:linear-gradient(90deg,transparent,rgba(201,151,61,.05),rgba(139,100,50,.04),transparent,rgba(201,151,61,.04),transparent);animation:fogDrift 25s linear infinite;opacity:.8}
-.parallax-fog-2{position:absolute;bottom:40px;width:200%;height:180px;background:linear-gradient(90deg,transparent,rgba(180,140,80,.03),transparent,rgba(201,151,61,.05),transparent);animation:fogDrift 40s linear infinite reverse;opacity:.6}
+.parallax-skyline{position:absolute;bottom:0;width:100%;height:300px;background:url('detroit-skyline-outline.jpg') center bottom/cover no-repeat;opacity:.3;filter:blur(0px)}
+.parallax-fog{position:absolute;bottom:0;width:200%;height:300px;background:linear-gradient(90deg,transparent 5%,rgba(201,151,61,.1) 25%,rgba(139,100,50,.08) 45%,transparent 55%,rgba(201,151,61,.08) 75%,transparent 95%);animation:fogDrift 20s linear infinite;opacity:1}
+.parallax-fog-2{position:absolute;bottom:40px;width:200%;height:220px;background:linear-gradient(90deg,transparent 10%,rgba(180,140,80,.07) 30%,transparent 50%,rgba(201,151,61,.09) 70%,transparent 90%);animation:fogDrift 35s linear infinite reverse;opacity:.8}
 @keyframes fogDrift{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 /* Amber street lights breathing along skyline */
-.street-light{position:absolute;bottom:180px;width:8px;height:8px;border-radius:50%;background:rgba(201,151,61,.7);box-shadow:0 0 20px rgba(201,151,61,.4),0 0 60px rgba(201,151,61,.15),0 5px 30px rgba(201,151,61,.2);animation:streetLightBreathe 4s ease-in-out infinite;pointer-events:none}
-.street-light:nth-child(2){left:15%;bottom:190px;width:6px;height:6px;animation-delay:1s;opacity:.7}
-.street-light:nth-child(3){left:30%;bottom:175px;width:7px;height:7px;animation-delay:2.5s}
-.street-light:nth-child(4){left:50%;bottom:195px;width:9px;height:9px;animation-delay:.5s}
-.street-light:nth-child(5){left:65%;bottom:185px;width:6px;height:6px;animation-delay:3s;opacity:.6}
-.street-light:nth-child(6){left:80%;bottom:178px;width:8px;height:8px;animation-delay:1.8s}
-.street-light:nth-child(7){left:92%;bottom:188px;width:5px;height:5px;animation-delay:3.5s;opacity:.5}
-@keyframes streetLightBreathe{0%,100%{opacity:.4;box-shadow:0 0 15px rgba(201,151,61,.3),0 0 40px rgba(201,151,61,.1)}50%{opacity:.9;box-shadow:0 0 30px rgba(201,151,61,.6),0 0 80px rgba(201,151,61,.25),0 8px 40px rgba(201,151,61,.3)}}
+.street-light{position:absolute;bottom:180px;width:12px;height:12px;border-radius:50%;background:rgba(201,151,61,.9);box-shadow:0 0 30px rgba(201,151,61,.7),0 0 80px rgba(201,151,61,.3),0 5px 50px rgba(201,151,61,.4);animation:streetLightBreathe 4s ease-in-out infinite;pointer-events:none}
+.street-light:nth-child(2){left:15%;bottom:190px;width:10px;height:10px;animation-delay:1s}
+.street-light:nth-child(3){left:30%;bottom:175px;width:11px;height:11px;animation-delay:2.5s}
+.street-light:nth-child(4){left:50%;bottom:195px;width:14px;height:14px;animation-delay:.5s}
+.street-light:nth-child(5){left:65%;bottom:185px;width:10px;height:10px;animation-delay:3s}
+.street-light:nth-child(6){left:80%;bottom:178px;width:12px;height:12px;animation-delay:1.8s}
+.street-light:nth-child(7){left:92%;bottom:188px;width:9px;height:9px;animation-delay:3.5s}
+@keyframes streetLightBreathe{0%,100%{opacity:.5;box-shadow:0 0 25px rgba(201,151,61,.5),0 0 60px rgba(201,151,61,.2)}50%{opacity:1;box-shadow:0 0 50px rgba(201,151,61,.8),0 0 120px rgba(201,151,61,.4),0 10px 60px rgba(201,151,61,.5)}}
 
 /* ═══════════════════════════════════════════
    SECTION TRANSITIONS — COFFEE THEMED
    ═══════════════════════════════════════════ */
 
 /* 1. Espresso Spill Wipe */
-.transition-espresso-spill{position:relative;height:60px;overflow:hidden}
-.transition-espresso-spill::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 0%,rgba(61,37,24,.6) 15%,rgba(107,58,42,.85) 50%,rgba(61,37,24,.6) 85%,transparent 100%);transform:translateX(-100%);opacity:0;transition:none}
+.transition-espresso-spill{position:relative;height:80px;overflow:hidden}
+.transition-espresso-spill::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 0%,rgba(61,37,24,.8) 10%,rgba(107,58,42,1) 50%,rgba(61,37,24,.8) 90%,transparent 100%);transform:translateX(-100%);opacity:0;transition:none}
 .transition-espresso-spill.animated::before{animation:espressoSpillWipe 1.5s ease-out forwards}
 @keyframes espressoSpillWipe{0%{transform:translateX(-100%);opacity:0}20%{opacity:1}100%{transform:translateX(0);opacity:.3}}
 
 /* 2. Cream Swirl Reveal */
-.transition-cream-swirl{position:relative;height:60px;overflow:hidden}
-.transition-cream-swirl::before{content:'';position:absolute;top:50%;left:50%;width:0;height:0;border-radius:50%;background:radial-gradient(circle,rgba(245,240,235,.15) 0%,rgba(245,240,235,.06) 50%,transparent 70%);transform:translate(-50%,-50%);opacity:0}
+.transition-cream-swirl{position:relative;height:80px;overflow:hidden}
+.transition-cream-swirl::before{content:'';position:absolute;top:50%;left:50%;width:0;height:0;border-radius:50%;background:radial-gradient(circle,rgba(245,240,235,.35) 0%,rgba(245,240,235,.15) 50%,transparent 70%);transform:translate(-50%,-50%);opacity:0}
 .transition-cream-swirl.animated::before{animation:creamSwirlReveal 2s ease-out forwards}
 @keyframes creamSwirlReveal{0%{width:0;height:0;opacity:0}50%{opacity:1}100%{width:400px;height:400px;opacity:.15}}
 
@@ -99,8 +99,8 @@ img{max-width:100%;display:block}
 @keyframes syrupDripDown{0%{height:0;opacity:0}30%{opacity:.7}100%{height:35px;opacity:.3}}
 
 /* 4. Coffee Ring Stain */
-.transition-coffee-ring{position:relative;height:80px;display:flex;align-items:center;justify-content:center}
-.transition-coffee-ring::before{content:'';width:70px;height:70px;border-radius:50%;border:3px solid rgba(107,58,42,0);box-shadow:0 0 0 rgba(139,69,19,0);opacity:0;transition:none}
+.transition-coffee-ring{position:relative;height:90px;display:flex;align-items:center;justify-content:center}
+.transition-coffee-ring::before{content:'';width:90px;height:90px;border-radius:50%;border:4px solid rgba(107,58,42,0);box-shadow:0 0 0 rgba(139,69,19,0);opacity:0;transition:none}
 .transition-coffee-ring.animated::before{animation:coffeeRingAppear 2s ease-out forwards}
 @keyframes coffeeRingAppear{0%{opacity:0;border-color:rgba(107,58,42,0);box-shadow:0 0 0 rgba(139,69,19,0)}50%{opacity:1;border-color:rgba(107,58,42,.25)}100%{opacity:.4;border-color:rgba(107,58,42,.15);box-shadow:0 0 20px 5px rgba(139,69,19,.05)}}
 
@@ -117,8 +117,8 @@ img{max-width:100%;display:block}
 .hero::before{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(13,11,9,.75) 0%,rgba(13,11,9,.5) 40%,rgba(13,11,9,.6) 70%,rgba(13,11,9,.92) 100%)}
 .hero::after{content:'';position:absolute;bottom:0;left:0;width:200%;height:120px;background:linear-gradient(90deg,transparent,rgba(201,151,61,.04),rgba(180,140,80,.06),transparent,rgba(201,151,61,.03),transparent);animation:fogDrift 20s linear infinite;pointer-events:none}
 /* Hero amber glow — breathing city light behind skyline */
-.hero-amber-glow{position:absolute;bottom:15%;left:50%;transform:translateX(-50%);width:80%;height:120px;background:radial-gradient(ellipse at 50% 100%,rgba(201,151,61,.12),rgba(201,151,61,.04) 40%,transparent 70%);animation:amberBreathe 5s ease-in-out infinite;pointer-events:none;z-index:1}
-@keyframes amberBreathe{0%,100%{opacity:.5;transform:translateX(-50%) scaleY(1)}50%{opacity:1;transform:translateX(-50%) scaleY(1.15)}}
+.hero-amber-glow{position:absolute;bottom:10%;left:50%;transform:translateX(-50%);width:90%;height:180px;background:radial-gradient(ellipse at 50% 100%,rgba(201,151,61,.25),rgba(201,151,61,.1) 40%,transparent 70%);animation:amberBreathe 5s ease-in-out infinite;pointer-events:none;z-index:1}
+@keyframes amberBreathe{0%,100%{opacity:.6;transform:translateX(-50%) scaleY(1)}50%{opacity:1;transform:translateX(-50%) scaleY(1.25)}}
 /* Amber street glow */
 .hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 80%,rgba(201,151,61,.06) 0%,transparent 50%),radial-gradient(ellipse at 70% 85%,rgba(201,151,61,.04) 0%,transparent 40%);animation:streetGlow 8s ease-in-out infinite alternate;pointer-events:none}
 @keyframes streetGlow{0%{opacity:.6}100%{opacity:1}}
@@ -134,12 +134,12 @@ img{max-width:100%;display:block}
 .hero-logo{width:280px;height:280px;border-radius:50%;border:3px solid var(--amber);box-shadow:0 0 40px rgba(201,151,61,.2);opacity:0;animation:heroLogoFade .8s ease-out 2.2s forwards}
 @keyframes heroLogoFade{0%{opacity:0;transform:scale(.95)}100%{opacity:1;transform:scale(1)}}
 /* Logo steam reveal */
-.logo-steam{position:absolute;bottom:50%;left:50%;width:3px;border-radius:50%;background:linear-gradient(to top,rgba(245,240,235,.25),rgba(245,240,235,.06),transparent);filter:blur(3px);opacity:0;pointer-events:none;transform:translateX(-50%)}
+.logo-steam{position:absolute;bottom:50%;left:50%;width:6px;border-radius:50%;background:linear-gradient(to top,rgba(245,240,235,.6),rgba(245,240,235,.2),transparent);filter:blur(2px);opacity:0;pointer-events:none;transform:translateX(-50%)}
 .logo-steam.rise{animation:logoSteamRise var(--dur,3s) ease-out var(--delay,2s) forwards}
-@keyframes logoSteamRise{0%{opacity:0;height:0;bottom:30%}15%{opacity:.5}40%{opacity:.35;height:80px}60%{opacity:.2;height:120px;bottom:60%}100%{opacity:0;height:160px;bottom:85%;transform:translateX(-50%) scaleX(2)}}
-.logo-steam-wide{position:absolute;bottom:40%;left:50%;width:60px;height:80px;border-radius:50%;background:radial-gradient(ellipse,rgba(245,240,235,.08),transparent);filter:blur(10px);opacity:0;pointer-events:none;transform:translateX(-50%)}
-.logo-steam-wide.rise{animation:logoSteamWide 3s ease-out 2.1s forwards}
-@keyframes logoSteamWide{0%{opacity:0;transform:translateX(-50%) translateY(0) scale(.5)}30%{opacity:.2}50%{opacity:.12;transform:translateX(-50%) translateY(-40px) scale(1.2)}100%{opacity:0;transform:translateX(-50%) translateY(-100px) scale(2)}}
+@keyframes logoSteamRise{0%{opacity:0;height:0;bottom:30%}10%{opacity:.8}30%{opacity:.6;height:100px}50%{opacity:.4;height:150px;bottom:55%}75%{opacity:.2;height:200px;bottom:70%}100%{opacity:0;height:250px;bottom:90%;transform:translateX(-50%) scaleX(2.5)}}
+.logo-steam-wide{position:absolute;bottom:40%;left:50%;width:120px;height:120px;border-radius:50%;background:radial-gradient(ellipse,rgba(245,240,235,.2),rgba(245,240,235,.05),transparent);filter:blur(8px);opacity:0;pointer-events:none;transform:translateX(-50%)}
+.logo-steam-wide.rise{animation:logoSteamWide 3.5s ease-out 2s forwards}
+@keyframes logoSteamWide{0%{opacity:0;transform:translateX(-50%) translateY(0) scale(.5)}20%{opacity:.4}40%{opacity:.3;transform:translateX(-50%) translateY(-30px) scale(1.3)}60%{opacity:.15;transform:translateX(-50%) translateY(-70px) scale(1.8)}100%{opacity:0;transform:translateX(-50%) translateY(-130px) scale(2.5)}}
 
 .hero h1{font-size:clamp(3rem,8vw,6.5rem);letter-spacing:.2em;margin-bottom:.3rem;text-transform:uppercase;text-shadow:0 4px 30px rgba(0,0,0,.6);opacity:0;transform:translateY(20px);animation:headlineFadeUp .8s ease-out 2.8s forwards}
 .hero .tagline{font-size:1.2rem;color:var(--muted);margin-bottom:2.5rem;letter-spacing:.12em;text-transform:uppercase;opacity:0;transform:translateY(15px);animation:headlineFadeUp .8s ease-out 3s forwards}
@@ -274,15 +274,15 @@ section{padding:5rem 1.5rem;position:relative}
 .foam-overlay{position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:0;transition:opacity .3s}
 .foam-overlay.active{opacity:1}
 .foam-overlay.fade-out{opacity:0;transition:opacity .5s}
-.foam-screen-drip{position:absolute;top:-10px;width:6px;border-radius:0 0 50% 50%;background:linear-gradient(to bottom,rgba(245,240,235,.7),rgba(245,240,235,.2),transparent);opacity:0}
-@keyframes screenFoamDrip{0%{height:0;opacity:.8}30%{opacity:.6}60%{height:45vh;opacity:.35}100%{height:70vh;opacity:0}}
-.foam-screen-drip.drip{animation:screenFoamDrip 2s ease-in forwards}
-.condensation-screen{position:absolute;border-radius:50%;background:rgba(245,240,235,.25);box-shadow:0 1px 3px rgba(0,0,0,.2);opacity:0}
-@keyframes condensationGrow{0%{opacity:0;transform:scale(0)}20%{opacity:.5;transform:scale(1)}60%{opacity:.35;transform:scale(1.1)}80%{opacity:.2;transform:translateY(8px) scale(1.15)}100%{opacity:0;transform:translateY(20px) scale(.8)}}
-.condensation-screen.bead{animation:condensationGrow 2.5s ease-out forwards}
-.foam-mist{position:absolute;bottom:0;width:100%;height:30%;background:linear-gradient(to top,rgba(245,240,235,.06),transparent);opacity:0}
-.foam-mist.rise{animation:mistRise 2s ease-out forwards}
-@keyframes mistRise{0%{opacity:0;transform:translateY(20px)}30%{opacity:.12}60%{opacity:.06}100%{opacity:0;transform:translateY(-40px)}}
+.foam-screen-drip{position:absolute;top:-10px;width:8px;border-radius:0 0 50% 50%;background:linear-gradient(to bottom,rgba(245,240,235,.9),rgba(245,240,235,.4),transparent);opacity:0}
+@keyframes screenFoamDrip{0%{height:0;opacity:1}20%{opacity:.8}50%{height:50vh;opacity:.5}100%{height:80vh;opacity:0}}
+.foam-screen-drip.drip{animation:screenFoamDrip 2.5s ease-in forwards}
+.condensation-screen{position:absolute;border-radius:50%;background:rgba(245,240,235,.5);box-shadow:0 2px 6px rgba(0,0,0,.3),inset 0 1px 2px rgba(255,255,255,.2);opacity:0}
+@keyframes condensationGrow{0%{opacity:0;transform:scale(0)}15%{opacity:.7;transform:scale(1)}50%{opacity:.5;transform:scale(1.2)}75%{opacity:.3;transform:translateY(12px) scale(1.15)}100%{opacity:0;transform:translateY(30px) scale(.8)}}
+.condensation-screen.bead{animation:condensationGrow 3s ease-out forwards}
+.foam-mist{position:absolute;bottom:0;width:100%;height:35%;background:linear-gradient(to top,rgba(245,240,235,.15),rgba(245,240,235,.04),transparent);opacity:0}
+.foam-mist.rise{animation:mistRise 2.5s ease-out forwards}
+@keyframes mistRise{0%{opacity:0;transform:translateY(20px)}20%{opacity:.3}50%{opacity:.15}100%{opacity:0;transform:translateY(-60px)}}
 
 /* Steam puff */
 .steam-puff{position:absolute;width:40px;height:60px;background:radial-gradient(ellipse,rgba(245,240,235,.06),transparent);border-radius:50%;filter:blur(8px);opacity:0;pointer-events:none;z-index:2}
@@ -307,30 +307,30 @@ section{padding:5rem 1.5rem;position:relative}
    MATCHA — PARTICLES + WHISK + GLOW
    ═══════════════════════════════════════════ */
 .matcha-section{position:relative;overflow:hidden}
-.matcha-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 60% 50%,rgba(74,124,89,.06),transparent 60%);opacity:0;transition:opacity 1.5s ease;pointer-events:none}
+.matcha-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 60% 50%,rgba(74,124,89,.15),transparent 60%);opacity:0;transition:opacity 1.5s ease;pointer-events:none}
 .matcha-section.active .matcha-glow{opacity:1;animation:matchaGlowPulse 4s ease-in-out infinite}
-@keyframes matchaGlowPulse{0%,100%{opacity:.6}50%{opacity:1}}
+@keyframes matchaGlowPulse{0%,100%{opacity:.5}50%{opacity:1}}
 
 @keyframes whisKSpin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
 @keyframes matchaDust{0%{opacity:0;transform:translateY(-15px) scale(.3)}30%{opacity:.6}60%{opacity:.4}100%{opacity:0;transform:translateY(20px) scale(1)}}
 .matcha-whisk{display:inline-block;font-size:1.8rem;opacity:0;transition:opacity .3s}
 .matcha-whisk.spin{opacity:.6;animation:whisKSpin 1.2s ease-out forwards}
 /* Fullscreen bamboo whisk overlay */
-.whisk-overlay{position:fixed;inset:0;z-index:9999;pointer-events:none;display:flex;align-items:center;justify-content:center;background:rgba(20,18,15,.85);opacity:0;transition:opacity .15s}
+.whisk-overlay{position:fixed;inset:0;z-index:9999;pointer-events:none;display:flex;align-items:center;justify-content:center;background:rgba(15,12,8,.92);opacity:0;transition:opacity .15s}
 .whisk-overlay.active{opacity:1}
 .whisk-overlay.fade-out{opacity:0;transition:opacity .3s}
-.whisk-stick{position:absolute;width:6px;height:120px;background:linear-gradient(to bottom,#c4a35a,#8b6914,#c4a35a);border-radius:3px;transform-origin:50% 100%}
-.whisk-head{position:relative;width:80px;height:80px}
-.whisk-tine{position:absolute;bottom:40px;left:50%;width:2.5px;height:55px;background:linear-gradient(to top,#c4a35a,#a07d2e);border-radius:2px;transform-origin:50% 100%}
+.whisk-stick{position:absolute;width:10px;height:180px;background:linear-gradient(to bottom,#d4b36a,#8b6914,#c4a35a,#8b6914);border-radius:5px;transform-origin:50% 100%}
+.whisk-head{position:relative;width:140px;height:140px}
+.whisk-tine{position:absolute;bottom:70px;left:50%;width:4px;height:90px;background:linear-gradient(to top,#d4b36a,#a07d2e);border-radius:3px;transform-origin:50% 100%}
 .whisk-assembly{display:flex;flex-direction:column;align-items:center;animation:whiskSwirl 1s ease-in-out forwards}
 @keyframes whiskSwirl{0%{transform:rotate(0deg) scale(.8);opacity:0}10%{opacity:1;transform:rotate(60deg) scale(1)}30%{transform:rotate(-45deg) scale(1.05)}50%{transform:rotate(180deg) scale(1)}70%{transform:rotate(-30deg) scale(1.05)}90%{transform:rotate(360deg) scale(1)}100%{transform:rotate(720deg) scale(.6);opacity:0}}
-.matcha-splash{position:absolute;border-radius:50%;background:rgba(74,124,89,.6);pointer-events:none;animation:splashOut 1s ease-out forwards}
-@keyframes splashOut{0%{transform:scale(0);opacity:.8}50%{opacity:.5}100%{transform:scale(3);opacity:0}}
+.matcha-splash{position:absolute;border-radius:50%;background:rgba(74,124,89,.8);pointer-events:none;animation:splashOut 1s ease-out forwards}
+@keyframes splashOut{0%{transform:scale(0);opacity:1}50%{opacity:.6}100%{transform:scale(5);opacity:0}}
 .matcha-dust{position:absolute;width:6px;height:6px;border-radius:50%;background:rgba(74,124,89,.5);pointer-events:none;opacity:0}
 .matcha-dust.animate{animation:matchaDust 2.5s ease-out forwards}
 
 /* Extra matcha particles */
-.matcha-particle{position:absolute;width:4px;height:4px;border-radius:50%;background:rgba(74,124,89,.35);pointer-events:none;opacity:0}
+.matcha-particle{position:absolute;width:6px;height:6px;border-radius:50%;background:rgba(74,124,89,.6);pointer-events:none;opacity:0}
 .matcha-particle.animate{animation:matchaDust 3s ease-out forwards}
 
 /* ═══════════════════════════════════════════
@@ -437,18 +437,18 @@ footer{background:#080706;padding:3rem 1.5rem;text-align:center;border-top:1px s
 /* Night skyline feel */
 footer::before{content:'';position:absolute;bottom:0;left:0;width:100%;height:80px;background:linear-gradient(to top,rgba(8,7,6,.95),transparent);pointer-events:none}
 /* Cafe window glow */
-.footer-window-glow{position:absolute;top:20px;right:15%;width:10px;height:10px;border-radius:50%;background:rgba(201,151,61,.8);box-shadow:0 0 20px rgba(201,151,61,.5),0 0 40px rgba(201,151,61,.2);animation:cafeWindowFlicker 4s ease-in-out infinite}
-.footer-window-glow-2{position:absolute;top:25px;left:25%;width:8px;height:8px;border-radius:50%;background:rgba(201,151,61,.6);box-shadow:0 0 15px rgba(201,151,61,.4),0 0 30px rgba(201,151,61,.15);animation:cafeWindowFlicker 5s ease-in-out 1.5s infinite}
-@keyframes cafeWindowFlicker{0%,100%{opacity:.5;box-shadow:0 0 15px rgba(201,151,61,.3)}20%{opacity:.9;box-shadow:0 0 25px rgba(201,151,61,.6)}40%{opacity:.3}60%{opacity:.85;box-shadow:0 0 20px rgba(201,151,61,.5)}80%{opacity:.4}}
+.footer-window-glow{position:absolute;top:20px;right:15%;width:14px;height:14px;border-radius:50%;background:rgba(201,151,61,1);box-shadow:0 0 30px rgba(201,151,61,.7),0 0 60px rgba(201,151,61,.3),0 0 100px rgba(201,151,61,.15);animation:cafeWindowFlicker 4s ease-in-out infinite}
+.footer-window-glow-2{position:absolute;top:25px;left:25%;width:12px;height:12px;border-radius:50%;background:rgba(201,151,61,.9);box-shadow:0 0 25px rgba(201,151,61,.6),0 0 50px rgba(201,151,61,.25);animation:cafeWindowFlicker 5s ease-in-out 1.5s infinite}
+@keyframes cafeWindowFlicker{0%,100%{opacity:.5;box-shadow:0 0 20px rgba(201,151,61,.4)}15%{opacity:1;box-shadow:0 0 40px rgba(201,151,61,.8),0 0 80px rgba(201,151,61,.3)}35%{opacity:.3}50%{opacity:.95;box-shadow:0 0 35px rgba(201,151,61,.7)}70%{opacity:.2}85%{opacity:.8;box-shadow:0 0 30px rgba(201,151,61,.6)}}
 
 /* Footer steam */
-.footer-steam{position:absolute;bottom:0;width:3px;height:60px;background:linear-gradient(to top,rgba(245,240,235,.12),transparent);border-radius:50%;filter:blur(4px);opacity:0;pointer-events:none}
+.footer-steam{position:absolute;bottom:0;width:5px;height:80px;background:linear-gradient(to top,rgba(245,240,235,.3),rgba(245,240,235,.08),transparent);border-radius:50%;filter:blur(3px);opacity:0;pointer-events:none}
 .footer-steam:nth-child(1){left:15%;animation:footerSteamRise 5s ease-in-out infinite}
 .footer-steam:nth-child(2){left:35%;animation:footerSteamRise 6s ease-in-out 1s infinite}
 .footer-steam:nth-child(3){left:55%;animation:footerSteamRise 5.5s ease-in-out 2.5s infinite}
 .footer-steam:nth-child(4){left:75%;animation:footerSteamRise 7s ease-in-out 3.5s infinite}
 .footer-steam:nth-child(5){left:90%;animation:footerSteamRise 4.5s ease-in-out 1.5s infinite}
-@keyframes footerSteamRise{0%{opacity:0;transform:translateY(0) scaleX(1)}15%{opacity:.15}30%{transform:translateY(-25px) scaleX(1.3)}50%{opacity:.08;transform:translateY(-50px) scaleX(.8)}100%{opacity:0;transform:translateY(-90px) scaleX(1.5)}}
+@keyframes footerSteamRise{0%{opacity:0;transform:translateY(0) scaleX(1)}15%{opacity:.4}30%{transform:translateY(-30px) scaleX(1.5)}50%{opacity:.2;transform:translateY(-55px) scaleX(.8)}100%{opacity:0;transform:translateY(-110px) scaleX(2)}}
 
 footer .footer-logo{width:70px;height:70px;border-radius:50%;margin:0 auto 1rem}
 .footer-links{display:flex;justify-content:center;gap:1.5rem;margin:1rem 0;flex-wrap:wrap;font-size:.9rem}

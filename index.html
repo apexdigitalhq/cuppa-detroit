@@ -233,7 +233,7 @@ section{padding:5rem 1.5rem;position:relative}
 /* ═══════════════════════════════════════════
    SPECIALTY SECTION — COLD FOAM / CONDENSATION / STEAM
    ═══════════════════════════════════════════ */
-/* Cold foam drip */
+/* Cold foam drip — local menu board */
 @keyframes foamDrip{0%{height:0;opacity:.6}60%{height:80px;opacity:.4}80%{height:95px;opacity:.25}100%{height:100px;opacity:0}}
 .foam-drip{position:absolute;top:0;width:4px;background:linear-gradient(to bottom,rgba(245,240,235,.5),rgba(245,240,235,.15));border-radius:0 0 50% 50%;opacity:0;pointer-events:none;z-index:2}
 .foam-drip.animate{animation:foamDrip 2.5s ease-out forwards}
@@ -241,10 +241,26 @@ section{padding:5rem 1.5rem;position:relative}
 .foam-drip:nth-child(2){right:28px;animation-delay:.4s}
 .foam-drip:nth-child(3){left:15px;animation-delay:.7s}
 
-/* Condensation dots */
+/* Condensation dots — local menu board */
 .condensation-dot{position:absolute;width:3px;height:3px;border-radius:50%;background:rgba(245,240,235,.15);opacity:0;pointer-events:none;z-index:2}
 .condensation-dot.animate{animation:condensationAppear 3s ease-out forwards}
 @keyframes condensationAppear{0%{opacity:0;transform:scale(0)}30%{opacity:.4;transform:scale(1)}70%{opacity:.3}100%{opacity:0;transform:scale(1.2) translateY(5px)}}
+
+/* ═══════════════════════════════════════════
+   FULLSCREEN COLD FOAM + CONDENSATION OVERLAY (specialty/menu)
+   ═══════════════════════════════════════════ */
+.foam-overlay{position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:0;transition:opacity .3s}
+.foam-overlay.active{opacity:1}
+.foam-overlay.fade-out{opacity:0;transition:opacity .5s}
+.foam-screen-drip{position:absolute;top:-10px;width:6px;border-radius:0 0 50% 50%;background:linear-gradient(to bottom,rgba(245,240,235,.7),rgba(245,240,235,.2),transparent);opacity:0}
+@keyframes screenFoamDrip{0%{height:0;opacity:.8}30%{opacity:.6}60%{height:45vh;opacity:.35}100%{height:70vh;opacity:0}}
+.foam-screen-drip.drip{animation:screenFoamDrip 2s ease-in forwards}
+.condensation-screen{position:absolute;border-radius:50%;background:rgba(245,240,235,.25);box-shadow:0 1px 3px rgba(0,0,0,.2);opacity:0}
+@keyframes condensationGrow{0%{opacity:0;transform:scale(0)}20%{opacity:.5;transform:scale(1)}60%{opacity:.35;transform:scale(1.1)}80%{opacity:.2;transform:translateY(8px) scale(1.15)}100%{opacity:0;transform:translateY(20px) scale(.8)}}
+.condensation-screen.bead{animation:condensationGrow 2.5s ease-out forwards}
+.foam-mist{position:absolute;bottom:0;width:100%;height:30%;background:linear-gradient(to top,rgba(245,240,235,.06),transparent);opacity:0}
+.foam-mist.rise{animation:mistRise 2s ease-out forwards}
+@keyframes mistRise{0%{opacity:0;transform:translateY(20px)}30%{opacity:.12}60%{opacity:.06}100%{opacity:0;transform:translateY(-40px)}}
 
 /* Steam puff */
 .steam-puff{position:absolute;width:40px;height:60px;background:radial-gradient(ellipse,rgba(245,240,235,.06),transparent);border-radius:50%;filter:blur(8px);opacity:0;pointer-events:none;z-index:2}
@@ -1128,6 +1144,52 @@ footer .footer-logo{width:70px;height:70px;border-radius:50%;margin:0 auto 1rem}
     });
   },{threshold:.3});
   document.querySelectorAll('[data-transition]').forEach(function(el){transObs.observe(el)});
+
+  // ═══════════════════════════════════════════
+  // FULLSCREEN COLD FOAM + CONDENSATION ON MENU/SPECIALTY
+  // ═══════════════════════════════════════════
+  var menuSection = document.getElementById('menu');
+  if(menuSection){
+    var foamObs = new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){
+      var overlay = document.createElement('div');
+      overlay.className = 'foam-overlay';
+      // Foam drips from top
+      var dripPositions = [8,18,32,48,65,78,88,95];
+      dripPositions.forEach(function(pos,i){
+        var drip = document.createElement('div');
+        drip.className = 'foam-screen-drip';
+        drip.style.left = pos + '%';
+        drip.style.width = (3 + Math.random()*5) + 'px';
+        drip.style.animationDelay = (i * 150) + 'ms';
+        overlay.appendChild(drip);
+      });
+      // Condensation beads on edges
+      for(var c=0;c<20;c++){
+        var bead = document.createElement('div');
+        bead.className = 'condensation-screen';
+        var size = 3 + Math.random()*6;
+        bead.style.width = bead.style.height = size + 'px';
+        bead.style.top = (10 + Math.random()*80) + '%';
+        bead.style.left = Math.random() < 0.5 ? (Math.random()*8) + '%' : (92 + Math.random()*8) + '%';
+        bead.style.animationDelay = (200 + c * 100) + 'ms';
+        overlay.appendChild(bead);
+      }
+      // Cold mist at bottom
+      var mist = document.createElement('div');
+      mist.className = 'foam-mist';
+      overlay.appendChild(mist);
+      document.body.appendChild(overlay);
+      requestAnimationFrame(function(){
+        overlay.classList.add('active');
+        overlay.querySelectorAll('.foam-screen-drip').forEach(function(d){d.classList.add('drip')});
+        overlay.querySelectorAll('.condensation-screen').forEach(function(d){d.classList.add('bead')});
+        mist.classList.add('rise');
+      });
+      setTimeout(function(){overlay.classList.add('fade-out');setTimeout(function(){overlay.remove()},600)},2200);
+      foamObs.unobserve(e.target);
+    }})},{threshold:.2});
+    foamObs.observe(menuSection);
+  }
 
   // ═══════════════════════════════════════════
   // STEAM ON DRINK GALLERY

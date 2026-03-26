@@ -209,6 +209,63 @@ footer .footer-logo{width:70px;height:70px;border-radius:50%;margin:0 auto 1rem}
 .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
 
+/* STAGGERED REVEAL CHILDREN */
+.reveal.visible > *:nth-child(1){transition-delay:0s}
+.reveal.visible > *:nth-child(2){transition-delay:.1s}
+.reveal.visible > *:nth-child(3){transition-delay:.15s}
+.reveal.visible > *:nth-child(4){transition-delay:.2s}
+.reveal.visible > *:nth-child(5){transition-delay:.25s}
+.reveal.visible > *:nth-child(6){transition-delay:.3s}
+
+/* 1. STEAM ANIMATION */
+@keyframes steamRise1{0%{opacity:0;transform:translateY(0) translateX(0) scaleX(1)}15%{opacity:.2}50%{opacity:.15;transform:translateY(-60px) translateX(8px) scaleX(.8)}100%{opacity:0;transform:translateY(-120px) translateX(-5px) scaleX(.6)}}
+@keyframes steamRise2{0%{opacity:0;transform:translateY(0) translateX(0) scaleX(1)}20%{opacity:.18}60%{opacity:.12;transform:translateY(-70px) translateX(-10px) scaleX(.7)}100%{opacity:0;transform:translateY(-130px) translateX(6px) scaleX(.5)}}
+@keyframes steamRise3{0%{opacity:0;transform:translateY(0) translateX(0) scaleX(1)}10%{opacity:.15}55%{opacity:.1;transform:translateY(-50px) translateX(6px) scaleX(.9)}100%{opacity:0;transform:translateY(-110px) translateX(-8px) scaleX(.6)}}
+.drink-card-wrap{position:relative;display:inline-block;width:100%}
+.drink-card-wrap .steam{position:absolute;top:5%;left:50%;width:2px;height:40px;pointer-events:none;opacity:0;background:linear-gradient(to top,rgba(245,240,235,.2),rgba(245,240,235,0));border-radius:50%;filter:blur(3px);z-index:3}
+.steam-active .steam{animation-iteration-count:infinite}
+.drink-card-wrap .steam:nth-child(1){left:35%;animation:steamRise1 4s ease-in-out infinite;animation-delay:0s}
+.drink-card-wrap .steam:nth-child(2){left:50%;animation:steamRise2 5s ease-in-out infinite;animation-delay:1.2s}
+.drink-card-wrap .steam:nth-child(3){left:65%;animation:steamRise3 4.5s ease-in-out infinite;animation-delay:2.4s}
+.drink-card-wrap:not(.steam-active) .steam{animation-play-state:paused;opacity:0}
+
+/* 2. SKYLINE PARALLAX */
+.skyline-divider{position:relative;overflow:hidden;height:200px;background:#000}
+.skyline-divider img{position:absolute;width:100%;height:140%;object-fit:cover;opacity:.85;will-change:transform}
+
+/* 3. DRINK CARD HOVER */
+.drink-card-wrap{transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease}
+.drink-card-wrap:hover,.drink-card-wrap:active{transform:translateY(-8px);box-shadow:0 12px 40px rgba(201,151,61,.2);border:2px solid rgba(201,151,61,.5);border-radius:2px}
+
+/* 4. COLD FOAM DRIP */
+@keyframes foamDrip{0%{height:0;opacity:.6}60%{height:80px;opacity:.4}80%{height:95px;opacity:.25}100%{height:100px;opacity:0}}
+.foam-drip{position:absolute;top:0;width:4px;background:linear-gradient(to bottom,rgba(245,240,235,.5),rgba(245,240,235,.15));border-radius:0 0 50% 50%;opacity:0;pointer-events:none;z-index:2}
+.foam-drip.animate{animation:foamDrip 2.5s ease-out forwards}
+.foam-drip:nth-child(1){right:12px;animation-delay:0s}
+.foam-drip:nth-child(2){right:28px;animation-delay:.4s}
+.foam-drip:nth-child(3){left:15px;animation-delay:.7s}
+
+/* 6. BOOK NOW BUTTON PULSE */
+@keyframes btnPulseGlow{0%,100%{transform:scale(1);box-shadow:0 0 0 rgba(201,151,61,0)}50%{transform:scale(1.05);box-shadow:0 0 25px rgba(201,151,61,.35)}}
+.btn-pulse{animation:btnPulseGlow 3s ease-in-out infinite}
+
+/* 7. ESPRESSO DRIP DIVIDERS */
+.espresso-divider{position:relative;height:20px;width:100%;overflow:visible;pointer-events:none}
+.espresso-divider::before{content:'';position:absolute;top:8px;left:5%;right:5%;height:2px;background:repeating-linear-gradient(90deg,transparent,transparent 8px,rgba(107,58,42,.2) 8px,rgba(107,58,42,.2) 16px);border-radius:1px}
+.espresso-divider::after{content:'💧';position:absolute;top:2px;left:50%;transform:translateX(-50%);font-size:10px;opacity:.3;filter:hue-rotate(-10deg) saturate(.5)}
+.espresso-drop{position:absolute;top:6px;width:6px;height:8px;background:rgba(107,58,42,.2);border-radius:0 0 50% 50%}
+.espresso-drop:nth-child(1){left:20%}
+.espresso-drop:nth-child(2){left:45%}
+.espresso-drop:nth-child(3){left:75%}
+
+/* 8. MATCHA WHISK + DUST */
+@keyframes whisKSpin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+@keyframes matchaDust{0%{opacity:0;transform:translateY(-10px) scale(.5)}40%{opacity:.5}100%{opacity:0;transform:translateY(15px) scale(1.2)}}
+.matcha-whisk{display:inline-block;font-size:1.8rem;opacity:0;transition:opacity .3s}
+.matcha-whisk.spin{opacity:.6;animation:whisKSpin 1.2s ease-out forwards}
+.matcha-dust{position:absolute;width:6px;height:6px;border-radius:50%;background:rgba(74,124,89,.4);pointer-events:none;opacity:0}
+.matcha-dust.animate{animation:matchaDust 2s ease-out forwards}
+
 /* RESPONSIVE */
 @media(max-width:768px){
   .about-grid,.merch-grid{grid-template-columns:1fr}
@@ -276,7 +333,7 @@ footer .footer-logo{width:70px;height:70px;border-radius:50%;margin:0 auto 1rem}
     <img src="logo-circle.jpg" alt="Cuppa Detroit" class="hero-logo">
     <h1>Brewed in Detroit</h1>
     <p class="tagline">Detroit's Signature Mobile Coffee Experience</p>
-    <a href="#booking" class="btn btn-primary">Book Your Event</a>
+    <a href="#booking" class="btn btn-primary btn-pulse">Book Your Event</a>
   </div>
 </section>
 
@@ -304,6 +361,8 @@ footer .footer-logo{width:70px;height:70px;border-radius:50%;margin:0 auto 1rem}
     </div>
   </div>
 </section>
+
+<div class="espresso-divider"><div class="espresso-drop"></div><div class="espresso-drop"></div><div class="espresso-drop"></div></div>
 
 <!-- FEATURED PHOTOS -->
 <section style="background:var(--bg);padding:4rem 1.5rem 2rem;text-align:center">
@@ -352,36 +411,44 @@ footer .footer-logo{width:70px;height:70px;border-radius:50%;margin:0 auto 1rem}
   <div class="container reveal">
     <h2 class="section-title">Our Drinks</h2>
     <div class="rust-line"></div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:900px;margin:0 auto">
-      <div style="text-align:center">
+    <div id="drinkGallery" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:900px;margin:0 auto">
+      <div class="drink-card-wrap" style="text-align:center">
+        <div class="steam"></div><div class="steam"></div><div class="steam"></div>
         <img src="gallery-cookie-cloud.jpg" alt="Cookie Cloud Latte" style="width:100%;aspect-ratio:1;object-fit:cover;border:2px solid rgba(201,151,61,.3);box-shadow:0 4px 20px rgba(0,0,0,.4)">
         <p style="color:var(--amber);font-family:var(--font-head);font-size:1rem;margin-top:.5rem;letter-spacing:.05em">Cookie Cloud Latte</p>
       </div>
-      <div style="text-align:center">
+      <div class="drink-card-wrap" style="text-align:center">
+        <div class="steam"></div><div class="steam"></div><div class="steam"></div>
         <img src="gallery-strawberry-matcha.jpg" alt="Strawberry x Matcha" style="width:100%;aspect-ratio:1;object-fit:cover;border:2px solid rgba(201,151,61,.3);box-shadow:0 4px 20px rgba(0,0,0,.4)">
         <p style="color:var(--amber);font-family:var(--font-head);font-size:1rem;margin-top:.5rem;letter-spacing:.05em">Strawberry x Matcha</p>
       </div>
-      <div style="text-align:center">
+      <div class="drink-card-wrap" style="text-align:center">
+        <div class="steam"></div><div class="steam"></div><div class="steam"></div>
         <img src="gallery-red-velvet.jpg" alt="Red Velvet Latte" style="width:100%;aspect-ratio:1;object-fit:cover;border:2px solid rgba(201,151,61,.3);box-shadow:0 4px 20px rgba(0,0,0,.4)">
         <p style="color:var(--amber);font-family:var(--font-head);font-size:1rem;margin-top:.5rem;letter-spacing:.05em">Red Velvet Latte</p>
       </div>
-      <div style="text-align:center">
+      <div class="drink-card-wrap" style="text-align:center">
+        <div class="steam"></div><div class="steam"></div><div class="steam"></div>
         <img src="gallery-cookie-cloud-2.jpg" alt="Cookie Cloud Latte" style="width:100%;aspect-ratio:1;object-fit:cover;border:2px solid rgba(201,151,61,.3);box-shadow:0 4px 20px rgba(0,0,0,.4)">
         <p style="color:var(--amber);font-family:var(--font-head);font-size:1rem;margin-top:.5rem;letter-spacing:.05em">Cookie Cloud Latte</p>
       </div>
-      <div style="text-align:center">
+      <div class="drink-card-wrap" style="text-align:center">
+        <div class="steam"></div><div class="steam"></div><div class="steam"></div>
         <img src="gallery-mix-array.jpg" alt="Mix Array" style="width:100%;aspect-ratio:1;object-fit:cover;border:2px solid rgba(201,151,61,.3);box-shadow:0 4px 20px rgba(0,0,0,.4)">
         <p style="color:var(--amber);font-family:var(--font-head);font-size:1rem;margin-top:.5rem;letter-spacing:.05em">The Sampler</p>
       </div>
-      <div style="text-align:center">
+      <div class="drink-card-wrap" style="text-align:center">
+        <div class="steam"></div><div class="steam"></div><div class="steam"></div>
         <img src="gallery-hot-cocoa.jpg" alt="Famous Hot Cocoa" style="width:100%;aspect-ratio:1;object-fit:cover;border:2px solid rgba(201,151,61,.3);box-shadow:0 4px 20px rgba(0,0,0,.4)">
         <p style="color:var(--amber);font-family:var(--font-head);font-size:1rem;margin-top:.5rem;letter-spacing:.05em">Famous Hot Cocoa</p>
       </div>
-      <div style="text-align:center">
+      <div class="drink-card-wrap" style="text-align:center">
+        <div class="steam"></div><div class="steam"></div><div class="steam"></div>
         <img src="gallery-layali-pistachio.jpg" alt="Layali Pistachio Latte" style="width:100%;aspect-ratio:1;object-fit:cover;border:2px solid rgba(201,151,61,.3);box-shadow:0 4px 20px rgba(0,0,0,.4)">
         <p style="color:var(--amber);font-family:var(--font-head);font-size:1rem;margin-top:.5rem;letter-spacing:.05em">Layali Pistachio Latte</p>
       </div>
-      <div style="text-align:center">
+      <div class="drink-card-wrap" style="text-align:center">
+        <div class="steam"></div><div class="steam"></div><div class="steam"></div>
         <img src="gallery-corktown-silk.jpg" alt="Corktown Silk Latte" style="width:100%;aspect-ratio:1;object-fit:cover;border:2px solid rgba(201,151,61,.3);box-shadow:0 4px 20px rgba(0,0,0,.4)">
         <p style="color:var(--amber);font-family:var(--font-head);font-size:1rem;margin-top:.5rem;letter-spacing:.05em">Corktown Silk Latte</p>
       </div>
@@ -394,6 +461,7 @@ footer .footer-logo{width:70px;height:70px;border-radius:50%;margin:0 auto 1rem}
   <div class="container reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center;max-width:900px;margin:0 auto">
     <img src="matcha-sign.jpg" alt="We Serve Matcha Now" style="width:100%;border:2px solid rgba(201,151,61,.3);box-shadow:0 8px 40px rgba(0,0,0,.4)">
     <div>
+      <div style="position:relative;display:inline-block"><span class="matcha-whisk" id="matchaWhisk">⟳</span><div class="matcha-dust" style="top:10px;left:5px"></div><div class="matcha-dust" style="top:15px;left:25px"></div><div class="matcha-dust" style="top:8px;left:40px"></div><div class="matcha-dust" style="top:20px;left:15px"></div><div class="matcha-dust" style="top:12px;left:35px"></div></div>
       <h2 style="font-family:var(--font-head);font-size:2rem;color:var(--amber);letter-spacing:.06em;margin-bottom:1rem">We Now Serve Matcha 🍵</h2>
       <p style="color:var(--muted);line-height:1.8;font-size:.95rem">This wasn't an overnight drop. We tested. We learned. We sourced. We waited until it felt right.</p>
       <p style="color:var(--cream);line-height:1.8;font-size:1.05rem;margin-top:1rem;font-weight:500">Now… Cuppa Detroit matcha has officially arrived.</p>
@@ -408,7 +476,8 @@ footer .footer-logo{width:70px;height:70px;border-radius:50%;margin:0 auto 1rem}
     <h2 class="section-title">The Menu</h2>
     <div class="rust-line"></div>
     <p class="section-sub">Handcrafted signature drinks — served fresh at your event</p>
-    <div class="menu-board">
+    <div class="menu-board" id="menuBoard" style="overflow:visible">
+      <div class="foam-drip"></div><div class="foam-drip"></div><div class="foam-drip"></div>
       <h3 style="font-family:var(--font-head);color:var(--amber);font-size:1.1rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.5rem;border-bottom:2px solid rgba(201,151,61,.3);padding-bottom:.5rem">Signature Lattes</h3>
       <ul>
         <li>Brownstone Latte</li>
@@ -491,6 +560,8 @@ footer .footer-logo{width:70px;height:70px;border-radius:50%;margin:0 auto 1rem}
     <p style="color:var(--muted);font-size:.9rem;text-align:center;margin-top:1.5rem;font-style:italic">Packages can be customized. Smaller packages also available.</p>
   </div>
 </section>
+
+<div class="espresso-divider"><div class="espresso-drop"></div><div class="espresso-drop"></div><div class="espresso-drop"></div></div>
 
 <!-- EVENTS WE SERVE -->
 <section style="background:var(--bg);padding:5rem 1.5rem">
@@ -591,6 +662,8 @@ footer .footer-logo{width:70px;height:70px;border-radius:50%;margin:0 auto 1rem}
   </div>
 </section>
 
+<div class="espresso-divider"><div class="espresso-drop"></div><div class="espresso-drop"></div><div class="espresso-drop"></div></div>
+
 <!-- REVIEWS / SOCIAL PROOF -->
 <section style="background:var(--bg);padding:5rem 1.5rem">
   <div class="container reveal">
@@ -687,7 +760,7 @@ footer .footer-logo{width:70px;height:70px;border-radius:50%;margin:0 auto 1rem}
       <h2 class="section-title">Limited Availability</h2>
       <div class="rust-line"></div>
       <p style="color:var(--muted);line-height:1.8;font-size:1.05rem;margin-bottom:2rem">We take a limited number of bookings per month to maintain quality. Early inquiries are strongly recommended.</p>
-      <a href="#booking" class="btn btn-primary">Inquire Now</a>
+      <a href="#booking" class="btn btn-primary btn-pulse">Inquire Now</a>
     </div>
   </div>
 </section>
@@ -749,6 +822,51 @@ setTimeout(function(){document.getElementById('dripOverlay').classList.add('done
 // Scroll reveal
 const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:.15});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// 1. Steam on drink gallery
+const drinkGallery=document.getElementById('drinkGallery');
+if(drinkGallery){
+  const steamObs=new IntersectionObserver((entries)=>{entries.forEach(e=>{
+    const cards=e.target.querySelectorAll('.drink-card-wrap');
+    cards.forEach(c=>{if(e.isIntersecting)c.classList.add('steam-active');else c.classList.remove('steam-active')});
+  })},{threshold:.1});
+  steamObs.observe(drinkGallery);
+}
+
+// 2. Skyline parallax
+const skylines=document.querySelectorAll('.skyline-divider img');
+window.addEventListener('scroll',function(){
+  const scrollY=window.pageYOffset;
+  skylines.forEach(img=>{
+    const rect=img.parentElement.getBoundingClientRect();
+    const offset=(rect.top+rect.height/2-window.innerHeight/2)*0.3;
+    img.style.transform='translateY('+offset+'px)';
+  });
+},{passive:true});
+
+// 4. Cold foam drip on menu
+const menuBoard=document.getElementById('menuBoard');
+if(menuBoard){
+  const foamObs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){
+    e.target.querySelectorAll('.foam-drip').forEach(d=>d.classList.add('animate'));
+    foamObs.unobserve(e.target);
+  }})},{threshold:.3});
+  foamObs.observe(menuBoard);
+}
+
+// 8. Matcha whisk spin + dust
+const matchaSection=document.querySelector('[style*="background:var(--bg2);padding:4rem 1.5rem"]');
+if(matchaSection){
+  const matchaObs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){
+    const whisk=document.getElementById('matchaWhisk');
+    if(whisk)whisk.classList.add('spin');
+    e.target.querySelectorAll('.matcha-dust').forEach((d,i)=>{
+      setTimeout(()=>d.classList.add('animate'),300+i*200);
+    });
+    matchaObs.unobserve(e.target);
+  }})},{threshold:.3});
+  matchaObs.observe(matchaSection);
+}
 </script>
 </body>
 </html>

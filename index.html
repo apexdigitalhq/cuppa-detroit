@@ -1,4 +1,4 @@
-<!-- v8.19 -->
+<!-- v9.0 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,16 +15,14 @@
 :root{--bg:#0d0b09;--bg2:#1a1714;--bg3:#111;--rust:#8B4513;--coffee:#6B3A2A;--sienna:#A0522D;--amber:#C9973D;--cream:#F5F0EB;--muted:#a89b8c;--font-head:'Bebas Neue',sans-serif;--font-body:'DM Sans',sans-serif}
 html{scroll-behavior:smooth}
 body{font-family:var(--font-body);background:var(--bg);color:var(--cream);overflow-x:hidden}
-/* grain overlay */
 body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9998;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 h1,h2,h3,h4{font-family:var(--font-head);font-weight:400;letter-spacing:.06em}
 a{color:var(--amber);text-decoration:none}
 img{max-width:100%;display:block}
 
-/* COFFEE DRIP + BEANS ANIMATION (2 seconds) */
+/* COFFEE DRIP + BEANS ANIMATION */
 .drip-overlay{position:fixed;inset:0;z-index:10000;background:rgba(13,11,9,.92);pointer-events:auto;animation:dripFadeOut .4s ease .9s forwards;overflow:hidden}
 .drip-overlay.done{pointer-events:none}
-/* Coffee streams */
 .drip-stream{position:absolute;top:-10px;width:8px;height:0;border-radius:0 0 50% 50%;animation:dripFall .9s ease-in forwards}
 .drip-stream:nth-child(1){left:5%;background:rgba(101,67,33,.9);width:10px;animation-delay:0s}
 .drip-stream:nth-child(2){left:15%;background:rgba(61,37,24,.85);width:6px;animation-delay:.15s}
@@ -34,7 +32,6 @@ img{max-width:100%;display:block}
 .drip-stream:nth-child(6){left:65%;background:rgba(61,37,24,.8);width:5px;animation-delay:.3s}
 .drip-stream:nth-child(7){left:75%;background:rgba(101,67,33,.9);width:12px;animation-delay:.08s}
 .drip-stream:nth-child(8){left:88%;background:rgba(139,90,43,.85);width:8px;animation-delay:.2s}
-/* Coffee beans */
 .coffee-bean{position:absolute;top:-40px;width:20px;height:28px;background:radial-gradient(ellipse at 40% 40%, #5a3a1a 0%, #3d2518 60%, #2a1810 100%);border-radius:50%;box-shadow:inset -2px -2px 4px rgba(0,0,0,.5),inset 2px 1px 3px rgba(139,90,43,.3);animation:beanFall .8s ease-in forwards;opacity:.9}
 .coffee-bean::after{content:'';position:absolute;top:30%;left:35%;width:30%;height:40%;border-left:2px solid rgba(0,0,0,.4);border-radius:50%;transform:rotate(-10deg)}
 .coffee-bean:nth-child(9){left:10%;width:18px;height:24px;animation-delay:.1s;transform:rotate(25deg)}
@@ -46,20 +43,9 @@ img{max-width:100%;display:block}
 .coffee-bean:nth-child(15){left:90%;width:20px;height:26px;animation-delay:.08s;transform:rotate(20deg)}
 .coffee-bean:nth-child(16){left:45%;width:15px;height:20px;animation-delay:.4s;transform:rotate(55deg)}
 .coffee-bean:nth-child(17){left:70%;width:22px;height:28px;animation-delay:.25s;transform:rotate(-20deg)}
-@keyframes dripFall{
-  0%{height:0}
-  70%{height:110vh}
-  100%{height:110vh}
-}
-@keyframes beanFall{
-  0%{top:-40px;opacity:.9}
-  80%{opacity:.7}
-  100%{top:110vh;opacity:0}
-}
-@keyframes dripFadeOut{
-  0%{opacity:1}
-  100%{opacity:0;pointer-events:none}
-}
+@keyframes dripFall{0%{height:0}70%{height:110vh}100%{height:110vh}}
+@keyframes beanFall{0%{top:-40px;opacity:.9}80%{opacity:.7}100%{top:110vh;opacity:0}}
+@keyframes dripFadeOut{0%{opacity:1}100%{opacity:0;pointer-events:none}}
 
 /* COFFEE STAIN EFFECTS */
 .coffee-stain{position:absolute;border-radius:50%;pointer-events:none;z-index:1}
@@ -108,6 +94,13 @@ section{padding:5rem 1.5rem;position:relative}
 .about-text p:first-child{color:var(--cream);font-size:1.05rem}
 .about-img{border:2px solid rgba(139,69,19,.3);filter:saturate(.85) contrast(1.05)}
 
+/* WHAT TO EXPECT */
+.expect-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem 2rem;max-width:800px;margin:0 auto}
+.expect-item{display:flex;align-items:flex-start;gap:.8rem;padding:1rem 1.2rem;background:var(--bg3);border:1px solid rgba(139,69,19,.15);border-left:3px solid var(--amber);transition:border-color .3s}
+.expect-item:hover{border-color:var(--amber)}
+.expect-icon{font-size:1.3rem;flex-shrink:0;margin-top:.1rem}
+.expect-item p{color:var(--muted);font-size:.95rem;line-height:1.5}
+
 /* MENU */
 .menu{background:var(--bg)}
 .menu-board{max-width:550px;margin:0 auto;background:var(--bg3);border:2px solid rgba(139,69,19,.3);padding:2.5rem 2rem;position:relative}
@@ -116,6 +109,11 @@ section{padding:5rem 1.5rem;position:relative}
 .menu-board li{font-family:var(--font-head);font-size:1.35rem;letter-spacing:.1em;padding:.7rem 0;border-bottom:1px solid rgba(139,69,19,.15);text-transform:uppercase;display:flex;align-items:center;gap:.6rem}
 .menu-board li:last-child{border-bottom:none}
 .menu-board li::before{content:'◆';color:var(--rust);font-size:.6rem}
+
+/* ROTATING MENU CALLOUT */
+.menu-callout{max-width:600px;margin:2rem auto 0;background:linear-gradient(135deg,rgba(139,69,19,.12) 0%,rgba(201,151,61,.06) 100%);border:2px solid rgba(201,151,61,.3);padding:1.5rem 2rem;text-align:center;position:relative}
+.menu-callout::before{content:'🔄';font-size:1.4rem;display:block;margin-bottom:.5rem}
+.menu-callout p{color:var(--cream);font-size:1rem;line-height:1.7;font-style:italic}
 
 /* PACKAGES */
 .packages{background:var(--bg2)}
@@ -126,6 +124,36 @@ section{padding:5rem 1.5rem;position:relative}
 .pkg-card.featured::after{content:'POPULAR';position:absolute;top:0;right:0;background:var(--amber);color:var(--bg);font-family:var(--font-head);font-size:.8rem;letter-spacing:.1em;padding:.3rem .8rem}
 .pkg-card h3{font-size:1.8rem;margin-bottom:.5rem}
 .pkg-card .pkg-detail{color:var(--muted);font-size:.95rem;line-height:1.7}
+.pkg-card .pkg-list{list-style:none;text-align:left;margin:1rem 0;padding:0}
+.pkg-card .pkg-list li{color:var(--muted);font-size:.9rem;padding:.4rem 0;border-bottom:1px solid rgba(139,69,19,.1);display:flex;align-items:center;gap:.5rem}
+.pkg-card .pkg-list li:last-child{border-bottom:none}
+.pkg-card .pkg-list li::before{content:'✓';color:var(--amber);font-weight:700;font-size:.8rem}
+
+/* EVENTS WE SERVE */
+.serve-tags{display:flex;flex-wrap:wrap;justify-content:center;gap:.7rem;margin:2rem 0}
+.serve-tags span{font-family:var(--font-head);font-size:1.05rem;letter-spacing:.08em;padding:.6rem 1.4rem;border:1px solid rgba(139,69,19,.3);text-transform:uppercase;transition:all .3s;background:rgba(139,69,19,.08)}
+.serve-tags span:hover{border-color:var(--amber);color:var(--amber);background:rgba(201,151,61,.08)}
+
+/* REVIEWS */
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:900px;margin:0 auto}
+.review-card{background:var(--bg3);border:1px solid rgba(139,69,19,.2);padding:2rem 1.5rem;text-align:center;position:relative;transition:border-color .3s}
+.review-card:hover{border-color:var(--amber)}
+.review-card .stars{font-size:1.2rem;margin-bottom:.8rem;letter-spacing:.1em}
+.review-card blockquote{color:var(--cream);font-size:1rem;line-height:1.6;font-style:italic;margin-bottom:1rem}
+.review-card .reviewer{color:var(--muted);font-size:.85rem;font-family:var(--font-head);letter-spacing:.08em;text-transform:uppercase}
+
+/* HOW BOOKING WORKS */
+.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;max-width:900px;margin:0 auto}
+.step-item{text-align:center;position:relative}
+.step-num{width:50px;height:50px;border-radius:50%;border:2px solid var(--amber);display:flex;align-items:center;justify-content:center;margin:0 auto .8rem;font-family:var(--font-head);font-size:1.5rem;color:var(--amber)}
+.step-item h4{font-size:1.1rem;margin-bottom:.4rem;letter-spacing:.06em}
+.step-item p{color:var(--muted);font-size:.85rem;line-height:1.5}
+
+/* LIMITED AVAILABILITY */
+.limited{background:linear-gradient(135deg,rgba(139,69,19,.18) 0%,var(--bg) 100%);border-top:3px solid var(--amber);border-bottom:3px solid var(--amber)}
+.limited-inner{text-align:center;max-width:650px;margin:0 auto}
+.limited-badge{display:inline-block;font-family:var(--font-head);font-size:.9rem;letter-spacing:.2em;text-transform:uppercase;background:var(--amber);color:var(--bg);padding:.3rem 1rem;margin-bottom:1.2rem;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.7}}
 
 /* FOUNDER SPECIAL */
 .founder{background:linear-gradient(135deg,rgba(139,69,19,.15) 0%,var(--bg) 100%);border-top:3px solid var(--rust);border-bottom:3px solid var(--rust)}
@@ -186,11 +214,17 @@ footer .footer-logo{width:70px;height:70px;border-radius:50%;margin:0 auto 1rem}
   .about-grid,.merch-grid{grid-template-columns:1fr}
   .pkg-grid{grid-template-columns:1fr}
   .events-grid{grid-template-columns:1fr}
+  .expect-grid{grid-template-columns:1fr}
+  .reviews-grid{grid-template-columns:1fr}
+  .steps-grid{grid-template-columns:1fr 1fr}
   .about-img,.merch-img{max-width:400px;margin:0 auto}
   section{padding:3.5rem 1.2rem}
   .menu-board{padding:2rem 1.5rem}
   .social-bar{font-size:.75rem;gap:1rem}
   .hero-logo{width:140px;height:140px}
+}
+@media(max-width:480px){
+  .steps-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -231,7 +265,6 @@ footer .footer-logo{width:70px;height:70px;border-radius:50%;margin:0 auto 1rem}
 
 <!-- HERO -->
 <section class="hero" id="home">
-  <!-- Coffee stains -->
   <div class="coffee-stain stain-ring" style="width:180px;height:180px;top:10%;left:5%"></div>
   <div class="coffee-stain stain-fill" style="width:120px;height:120px;top:20%;right:8%"></div>
   <div class="coffee-stain stain-ring" style="width:80px;height:80px;top:60%;left:12%"></div>
@@ -242,7 +275,7 @@ footer .footer-logo{width:70px;height:70px;border-radius:50%;margin:0 auto 1rem}
   <div class="hero-content">
     <img src="logo-circle.jpg" alt="Cuppa Detroit" class="hero-logo">
     <h1>Brewed in Detroit</h1>
-    <p class="tagline">Mobile Coffee Cart Experience</p>
+    <p class="tagline">Detroit's Signature Mobile Coffee Experience</p>
     <a href="#booking" class="btn btn-primary">Book Your Event</a>
   </div>
 </section>
@@ -279,46 +312,40 @@ footer .footer-logo{width:70px;height:70px;border-radius:50%;margin:0 auto 1rem}
   </div>
 </section>
 
-<!-- SIGNATURE DRINKS -->
-<section class="menu" id="menu">
+<!-- WHAT TO EXPECT -->
+<section style="background:var(--bg2);padding:5rem 1.5rem">
   <div class="container reveal">
-    <h2 class="section-title">The Menu</h2>
+    <h2 class="section-title">What to Expect</h2>
     <div class="rust-line"></div>
-    <p class="section-sub">Handcrafted signature drinks — served fresh at your event</p>
-    <div class="menu-board">
-      <h3 style="font-family:var(--font-head);color:var(--amber);font-size:1.1rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.5rem;border-bottom:2px solid rgba(201,151,61,.3);padding-bottom:.5rem">Signature Lattes</h3>
-      <ul>
-        <li>Brownstone Latte</li>
-        <li>Corktown Silk Latte</li>
-        <li>Woodward Nilla Latte</li>
-        <li>Layali Pistachio Latte</li>
-        <li>Red Velvet Latte</li>
-        <li>Cookie Cloud Latte</li>
-      </ul>
-      <h3 style="font-family:var(--font-head);color:var(--amber);font-size:1.1rem;letter-spacing:.15em;text-transform:uppercase;margin:1.5rem 0 .5rem;border-bottom:2px solid rgba(201,151,61,.3);padding-bottom:.5rem">Matcha</h3>
-      <ul>
-        <li>Iced Matcha Lattes — Select Flavors</li>
-      </ul>
-      <h3 style="font-family:var(--font-head);color:var(--amber);font-size:1.1rem;letter-spacing:.15em;text-transform:uppercase;margin:1.5rem 0 .5rem;border-bottom:2px solid rgba(201,151,61,.3);padding-bottom:.5rem">Refreshers</h3>
-      <ul>
-        <li>Strawberry Refresher</li>
-        <li>Strawberry Lemon Refresher</li>
-        <li>Pineapple Refresher</li>
-        <li>+ More Seasonal Flavors</li>
-      </ul>
-      <h3 style="font-family:var(--font-head);color:var(--amber);font-size:1.1rem;letter-spacing:.15em;text-transform:uppercase;margin:1.5rem 0 .5rem;border-bottom:2px solid rgba(201,151,61,.3);padding-bottom:.5rem">Specialty</h3>
-      <ul>
-        <li>Famous Hot Cocoa with Marshmallow Rim</li>
-      </ul>
+    <p class="section-sub">When you book Cuppa Detroit, here's what shows up</p>
+    <div class="expect-grid">
+      <div class="expect-item">
+        <span class="expect-icon">☕</span>
+        <p>Mobile coffee cart set up at your event</p>
+      </div>
+      <div class="expect-item">
+        <span class="expect-icon">🎯</span>
+        <p>Professional espresso bar experience</p>
+      </div>
+      <div class="expect-item">
+        <span class="expect-icon">📋</span>
+        <p>Custom drink menu tailored to your guests</p>
+      </div>
+      <div class="expect-item">
+        <span class="expect-icon">🧊</span>
+        <p>Premium syrups, matcha, refreshers &amp; cold foam options</p>
+      </div>
+      <div class="expect-item">
+        <span class="expect-icon">🤝</span>
+        <p>Friendly Detroit-based service that creates real connections</p>
+      </div>
+      <div class="expect-item">
+        <span class="expect-icon">🎨</span>
+        <p>Customized merch or added designs to drinks if needed</p>
+      </div>
     </div>
-    <p style="color:var(--muted);font-size:.9rem;text-align:center;margin-top:1.5rem;font-style:italic">Our menu rotates based on the event, featuring our most loved Detroit-inspired drinks.</p>
   </div>
 </section>
-
-<!-- SKYLINE DIVIDER -->
-<div class="skyline-divider">
-  <img src="detroit-skyline-outline.jpg" alt="Detroit Skyline">
-</div>
 
 <!-- DRINK GALLERY -->
 <section style="background:var(--bg);padding:4rem 1.5rem">
@@ -373,7 +400,50 @@ footer .footer-logo{width:70px;height:70px;border-radius:50%;margin:0 auto 1rem}
     </div>
   </div>
 </section>
-<style>.container{max-width:1100px;margin:0 auto}@media(max-width:700px){section .container[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important}}</style>
+<style>@media(max-width:700px){section .container[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important}}</style>
+
+<!-- SIGNATURE DRINKS / THE MENU -->
+<section class="menu" id="menu">
+  <div class="container reveal">
+    <h2 class="section-title">The Menu</h2>
+    <div class="rust-line"></div>
+    <p class="section-sub">Handcrafted signature drinks — served fresh at your event</p>
+    <div class="menu-board">
+      <h3 style="font-family:var(--font-head);color:var(--amber);font-size:1.1rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.5rem;border-bottom:2px solid rgba(201,151,61,.3);padding-bottom:.5rem">Signature Lattes</h3>
+      <ul>
+        <li>Brownstone Latte</li>
+        <li>Corktown Silk Latte</li>
+        <li>Woodward Nilla Latte</li>
+        <li>Layali Pistachio Latte</li>
+        <li>Red Velvet Latte</li>
+        <li>Cookie Cloud Latte</li>
+      </ul>
+      <h3 style="font-family:var(--font-head);color:var(--amber);font-size:1.1rem;letter-spacing:.15em;text-transform:uppercase;margin:1.5rem 0 .5rem;border-bottom:2px solid rgba(201,151,61,.3);padding-bottom:.5rem">Matcha</h3>
+      <ul>
+        <li>Iced Matcha Lattes — Select Flavors</li>
+      </ul>
+      <h3 style="font-family:var(--font-head);color:var(--amber);font-size:1.1rem;letter-spacing:.15em;text-transform:uppercase;margin:1.5rem 0 .5rem;border-bottom:2px solid rgba(201,151,61,.3);padding-bottom:.5rem">Refreshers</h3>
+      <ul>
+        <li>Strawberry Refresher</li>
+        <li>Strawberry Lemon Refresher</li>
+        <li>Pineapple Refresher</li>
+        <li>+ More Seasonal Flavors</li>
+      </ul>
+      <h3 style="font-family:var(--font-head);color:var(--amber);font-size:1.1rem;letter-spacing:.15em;text-transform:uppercase;margin:1.5rem 0 .5rem;border-bottom:2px solid rgba(201,151,61,.3);padding-bottom:.5rem">Specialty</h3>
+      <ul>
+        <li>Famous Hot Cocoa with Marshmallow Rim</li>
+      </ul>
+    </div>
+    <div class="menu-callout">
+      <p>Our drink menu rotates based on each event. We also offer fully custom drink creations to match your theme or brand.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SKYLINE DIVIDER -->
+<div class="skyline-divider">
+  <img src="detroit-skyline-outline.jpg" alt="Detroit Skyline">
+</div>
 
 <!-- EVENT PACKAGES -->
 <section class="packages" id="packages">
@@ -386,23 +456,56 @@ footer .footer-logo{width:70px;height:70px;border-radius:50%;margin:0 auto 1rem}
         <h3>Silver</h3>
         <div class="pkg-detail">
           <p>Up to 100 drinks</p>
-          <p>2-hour service</p>
         </div>
+        <ul class="pkg-list">
+          <li>2 latte flavors</li>
+          <li>1 refresher option</li>
+          <li>2 hours of service</li>
+        </ul>
       </div>
       <div class="pkg-card featured">
         <h3>Gold</h3>
         <div class="pkg-detail">
           <p>Up to 150 drinks</p>
-          <p>2.5-hour service</p>
         </div>
+        <ul class="pkg-list">
+          <li>4 drink options</li>
+          <li>Cold foam included</li>
+          <li>Custom stickers</li>
+          <li>2.5 hours of service</li>
+        </ul>
       </div>
       <div class="pkg-card">
         <h3>Premium</h3>
         <div class="pkg-detail">
           <p>Up to 220 drinks</p>
-          <p>3-hour service</p>
         </div>
+        <ul class="pkg-list">
+          <li>Full custom menu</li>
+          <li>Specialty toppings</li>
+          <li>Luxury setup</li>
+          <li>3 hours of service</li>
+        </ul>
       </div>
+    </div>
+    <p style="color:var(--muted);font-size:.9rem;text-align:center;margin-top:1.5rem;font-style:italic">Packages can be customized. Smaller packages also available.</p>
+  </div>
+</section>
+
+<!-- EVENTS WE SERVE -->
+<section style="background:var(--bg);padding:5rem 1.5rem">
+  <div class="container reveal">
+    <h2 class="section-title">Events We Serve</h2>
+    <div class="rust-line"></div>
+    <p class="section-sub">Perfect for...</p>
+    <div class="serve-tags">
+      <span>Weddings</span>
+      <span>Bridal Showers</span>
+      <span>Graduation Parties</span>
+      <span>Corporate Events</span>
+      <span>Pop-Ups</span>
+      <span>Fitness &amp; Pilates Events</span>
+      <span>Community Markets</span>
     </div>
   </div>
 </section>
@@ -488,8 +591,34 @@ footer .footer-logo{width:70px;height:70px;border-radius:50%;margin:0 auto 1rem}
   </div>
 </section>
 
+<!-- REVIEWS / SOCIAL PROOF -->
+<section style="background:var(--bg);padding:5rem 1.5rem">
+  <div class="container reveal">
+    <h2 class="section-title">What People Are Saying</h2>
+    <div class="rust-line"></div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <blockquote>"Amazing drinks and the best vibes! Cuppa Detroit made our event unforgettable."</blockquote>
+        <p class="reviewer">— Happy Customer</p>
+      </div>
+      <div class="review-card">
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <blockquote>"The Layali Pistachio Latte is hands down the best latte I've ever had. So creative!"</blockquote>
+        <p class="reviewer">— Event Guest</p>
+      </div>
+      <div class="review-card">
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <blockquote>"Professional, friendly, and the drinks were beautiful. Everyone at the party was obsessed."</blockquote>
+        <p class="reviewer">— Private Event Host</p>
+      </div>
+    </div>
+    <p style="color:var(--muted);font-size:.9rem;text-align:center;margin-top:2rem">Share your Cuppa Detroit experience on Instagram <a href="https://instagram.com/cuppadetroit" target="_blank" style="color:var(--amber);font-weight:700">@cuppadetroit</a></p>
+  </div>
+</section>
+
 <!-- GUEST CHECK VISUAL -->
-<section style="background:var(--bg);padding:3rem 1.5rem;text-align:center">
+<section style="background:var(--bg2);padding:3rem 1.5rem;text-align:center">
   <div class="container reveal">
     <img src="guest-check-gotu.jpg" alt="Cuppa Detroit Got U - Guest Check" style="width:100%;max-width:500px;margin:0 auto;border:2px solid rgba(201,151,61,.3);box-shadow:0 8px 40px rgba(201,151,61,.1)">
   </div>
@@ -508,6 +637,49 @@ footer .footer-logo{width:70px;height:70px;border-radius:50%;margin:0 auto 1rem}
     </div>
     <div style="text-align:center">
       <a href="https://instagram.com/cuppadetroit" target="_blank" class="btn btn-outline">DM to Order</a>
+    </div>
+  </div>
+</section>
+
+<!-- HOW BOOKING WORKS -->
+<section style="background:var(--bg2);padding:5rem 1.5rem">
+  <div class="container reveal">
+    <h2 class="section-title">How Booking Works</h2>
+    <div class="rust-line"></div>
+    <div class="steps-grid">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <h4>Inquire</h4>
+        <p>Submit an inquiry form with your event details</p>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <h4>Confirm</h4>
+        <p>We confirm availability and discuss your vision</p>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <h4>Customize</h4>
+        <p>Choose your drink menu &amp; secure the date with a deposit</p>
+      </div>
+      <div class="step-item">
+        <div class="step-num">4</div>
+        <h4>Experience</h4>
+        <p>We show up and serve magic ✨</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIMITED AVAILABILITY -->
+<section class="limited">
+  <div class="container reveal">
+    <div class="limited-inner">
+      <div class="limited-badge">⚡ Book Early</div>
+      <h2 class="section-title">Limited Availability</h2>
+      <div class="rust-line"></div>
+      <p style="color:var(--muted);line-height:1.8;font-size:1.05rem;margin-bottom:2rem">We take a limited number of bookings per month to maintain quality. Early inquiries are strongly recommended.</p>
+      <a href="#booking" class="btn btn-primary">Inquire Now</a>
     </div>
   </div>
 </section>

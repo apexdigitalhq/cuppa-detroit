@@ -276,6 +276,17 @@ section{padding:5rem 1.5rem;position:relative}
 @keyframes matchaDust{0%{opacity:0;transform:translateY(-15px) scale(.3)}30%{opacity:.6}60%{opacity:.4}100%{opacity:0;transform:translateY(20px) scale(1)}}
 .matcha-whisk{display:inline-block;font-size:1.8rem;opacity:0;transition:opacity .3s}
 .matcha-whisk.spin{opacity:.6;animation:whisKSpin 1.2s ease-out forwards}
+/* Fullscreen bamboo whisk overlay */
+.whisk-overlay{position:fixed;inset:0;z-index:9999;pointer-events:none;display:flex;align-items:center;justify-content:center;background:rgba(20,18,15,.85);opacity:0;transition:opacity .15s}
+.whisk-overlay.active{opacity:1}
+.whisk-overlay.fade-out{opacity:0;transition:opacity .3s}
+.whisk-stick{position:absolute;width:6px;height:120px;background:linear-gradient(to bottom,#c4a35a,#8b6914,#c4a35a);border-radius:3px;transform-origin:50% 100%}
+.whisk-head{position:relative;width:80px;height:80px}
+.whisk-tine{position:absolute;bottom:40px;left:50%;width:2.5px;height:55px;background:linear-gradient(to top,#c4a35a,#a07d2e);border-radius:2px;transform-origin:50% 100%}
+.whisk-assembly{display:flex;flex-direction:column;align-items:center;animation:whiskSwirl 1s ease-in-out forwards}
+@keyframes whiskSwirl{0%{transform:rotate(0deg) scale(.8);opacity:0}10%{opacity:1;transform:rotate(60deg) scale(1)}30%{transform:rotate(-45deg) scale(1.05)}50%{transform:rotate(180deg) scale(1)}70%{transform:rotate(-30deg) scale(1.05)}90%{transform:rotate(360deg) scale(1)}100%{transform:rotate(720deg) scale(.6);opacity:0}}
+.matcha-splash{position:absolute;border-radius:50%;background:rgba(74,124,89,.6);pointer-events:none;animation:splashOut 1s ease-out forwards}
+@keyframes splashOut{0%{transform:scale(0);opacity:.8}50%{opacity:.5}100%{transform:scale(3);opacity:0}}
 .matcha-dust{position:absolute;width:6px;height:6px;border-radius:50%;background:rgba(74,124,89,.5);pointer-events:none;opacity:0}
 .matcha-dust.animate{animation:matchaDust 2.5s ease-out forwards}
 
@@ -1164,6 +1175,25 @@ footer .footer-logo{width:70px;height:70px;border-radius:50%;margin:0 auto 1rem}
   if(matchaSection){
     var matchaObs = new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){
       e.target.classList.add('active');
+      // Fullscreen bamboo whisk swirl
+      var overlay = document.createElement('div');
+      overlay.className = 'whisk-overlay';
+      var assembly = document.createElement('div');
+      assembly.className = 'whisk-assembly';
+      var stick = document.createElement('div');
+      stick.className = 'whisk-stick';
+      var head = document.createElement('div');
+      head.className = 'whisk-head';
+      for(var t=0;t<12;t++){var tine=document.createElement('div');tine.className='whisk-tine';tine.style.transform='rotate('+(t*30)+'deg)';head.appendChild(tine);}
+      assembly.appendChild(head);
+      assembly.appendChild(stick);
+      overlay.appendChild(assembly);
+      // Matcha splashes
+      for(var s=0;s<6;s++){var sp=document.createElement('div');sp.className='matcha-splash';sp.style.width=sp.style.height=(15+Math.random()*25)+'px';sp.style.top=(30+Math.random()*40)+'%';sp.style.left=(20+Math.random()*60)+'%';sp.style.animationDelay=(200+s*120)+'ms';overlay.appendChild(sp);}
+      document.body.appendChild(overlay);
+      requestAnimationFrame(function(){overlay.classList.add('active');});
+      setTimeout(function(){overlay.classList.add('fade-out');setTimeout(function(){overlay.remove()},400);},1000);
+      // Original matcha effects
       var whisk = document.getElementById('matchaWhisk');
       if(whisk) whisk.classList.add('spin');
       e.target.querySelectorAll('.matcha-dust').forEach(function(d,i){
